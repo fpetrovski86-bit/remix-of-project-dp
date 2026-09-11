@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KategorijaIdRouteImport } from './routes/kategorija.$id'
+import { Route as RasporedIdRouteImport } from './routes/raspored.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const KategorijaIdRoute = KategorijaIdRouteImport.update({
   path: '/kategorija/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RasporedIdRoute = RasporedIdRouteImport.update({
+  id: '/raspored/$id',
+  path: '/raspored/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kategorija/$id': typeof KategorijaIdRoute
+  '/raspored/$id': typeof RasporedIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kategorija/$id': typeof KategorijaIdRoute
+  '/raspored/$id': typeof RasporedIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kategorija/$id': typeof KategorijaIdRoute
+  '/raspored/$id': typeof RasporedIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kategorija/$id'
+  fullPaths: '/' | '/kategorija/$id' | '/raspored/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kategorija/$id'
-  id: '__root__' | '/' | '/kategorija/$id'
+  to: '/' | '/kategorija/$id' | '/raspored/$id'
+  id: '__root__' | '/' | '/kategorija/$id' | '/raspored/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KategorijaIdRoute: typeof KategorijaIdRoute
+  RasporedIdRoute: typeof RasporedIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KategorijaIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/raspored/$id': {
+      id: '/raspored/$id'
+      path: '/raspored/$id'
+      fullPath: '/raspored/$id'
+      preLoaderRoute: typeof RasporedIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KategorijaIdRoute: KategorijaIdRoute,
+  RasporedIdRoute: RasporedIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

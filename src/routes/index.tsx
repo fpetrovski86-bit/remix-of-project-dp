@@ -90,6 +90,7 @@ function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string;
     <div className="mx-auto max-w-2xl text-center">
       <p className="eyebrow">{eyebrow}</p>
       <h2 className="mt-3 font-display text-4xl sm:text-5xl">{title}</h2>
+      <div className="diamond-rule mt-4" aria-hidden />
       {text && <p className="mt-4 text-muted-foreground">{text}</p>}
     </div>
   );
@@ -163,26 +164,23 @@ function Field({ label, type }: { label: string; type: string }) {
 
 function EventsCalendar() {
   const { lang, t } = useLang();
-  const events = [
-    { d: "05.09", mk: "Жива музика — тамбураши", en: "Live music — tamburitza band", tag: { mk: "Петок", en: "Friday" } },
-    { d: "12.09", mk: "Вечер на скара", en: "Grill evening", tag: { mk: "Петок", en: "Friday" } },
-    { d: "20.09", mk: "Резервиран ден — свадба", en: "Reserved day — wedding", tag: { mk: "Резервирано", en: "Reserved" } },
-    { d: "04.10", mk: "Жива музика — народни песни", en: "Live music — folk songs", tag: { mk: "Петок", en: "Friday" } },
-    { d: "18.10", mk: "Резервиран ден — крштевка", en: "Reserved day — christening", tag: { mk: "Резервирано", en: "Reserved" } },
-    { d: "31.12", mk: "Дочек на Нова Година", en: "New Year's Eve celebration", tag: { mk: "Празник", en: "Holiday" } },
-  ];
   return (
-    <div className="mx-auto mt-12 max-w-4xl divide-y divide-border overflow-hidden rounded-md border border-border bg-card">
-      {events.map((e) => (
-        <div key={e.d} className="flex items-center gap-5 p-5">
+    <div className="mx-auto mt-12 max-w-4xl divide-y divide-border overflow-hidden border border-border bg-card">
+      {EVENTS.map((e) => (
+        <Link
+          key={e.id}
+          to="/raspored/$id"
+          params={{ id: e.id }}
+          className="flex items-center gap-5 p-5 transition-colors hover:bg-secondary"
+        >
           <div className="w-16 shrink-0 text-center">
             <span className="font-display text-2xl text-primary">{e.d}</span>
           </div>
           <p className="flex-1 text-sm">{lang === "mk" ? e.mk : e.en}</p>
-          <span className="rounded-full bg-secondary px-3 py-1 text-xs uppercase tracking-widest text-secondary-foreground">
-            {lang === "mk" ? e.tag.mk : e.tag.en}
+          <span className="bg-secondary px-3 py-1 text-xs uppercase tracking-widest text-secondary-foreground">
+            {lang === "mk" ? e.tagMk : e.tagEn}
           </span>
-        </div>
+        </Link>
       ))}
       <div className="bg-secondary/50 p-4 text-center text-xs uppercase tracking-widest text-muted-foreground">
         {t("upcoming")}
