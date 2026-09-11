@@ -28,7 +28,7 @@ function Dropdown({
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className={`flex items-center gap-2 font-display text-base uppercase tracking-[0.14em] transition-colors hover:text-primary ${
+        className={`flex items-center gap-2 font-display text-xl font-semibold uppercase tracking-[0.12em] transition-colors hover:text-primary ${
           solid ? "text-foreground" : "text-ink-foreground"
         }`}
       >
@@ -54,7 +54,7 @@ export function TopBar() {
   const itemCls =
     "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
-  const linkCls = `font-display text-lg uppercase tracking-[0.14em] transition-colors hover:text-primary ${
+  const linkCls = `font-display text-xl font-semibold uppercase tracking-[0.12em] transition-colors hover:text-primary ${
     solid ? "text-foreground" : "text-ink-foreground"
   }`;
 
@@ -64,7 +64,7 @@ export function TopBar() {
         <div className="flex items-center gap-9">
           <Link
             to="/"
-            className={`font-display text-3xl uppercase tracking-[0.16em] transition-colors ${
+            className={`font-display text-4xl font-bold uppercase tracking-[0.14em] transition-colors ${
               solid ? "text-foreground" : "text-ink-foreground"
             }`}
           >

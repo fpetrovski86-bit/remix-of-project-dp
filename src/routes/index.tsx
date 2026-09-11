@@ -121,7 +121,7 @@ function Home() {
             ))}
           </div>
           <div className="mt-14 text-center">
-            <Link to="/meni" className="btn-base btn-quiet border-primary px-12 py-4 text-base text-primary">
+            <Link to="/meni" className="btn-base btn-outline-brand px-14 py-4 text-lg">
               {t("menuBtn")}
             </Link>
           </div>
