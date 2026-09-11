@@ -5,9 +5,11 @@ import { CATEGORY_IDS, EVENTS } from "@/lib/data";
 
 function Dropdown({
   label,
+  solid,
   children,
 }: {
   label: string;
+  solid: boolean;
   children: (close: () => void) => React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -26,14 +28,16 @@ function Dropdown({
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex items-center gap-1.5 font-display text-sm uppercase tracking-[0.12em] text-foreground transition-colors hover:text-primary"
+        className={`flex items-center gap-2 font-display text-base uppercase tracking-[0.14em] transition-colors hover:text-primary ${
+          solid ? "text-foreground" : "text-ink-foreground"
+        }`}
       >
         {label}
         <span className={`text-[0.6rem] transition-transform ${open ? "rotate-180" : ""}`}>▼</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-3 max-h-[70vh] w-64 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]">
+        <div className="absolute left-0 top-full z-50 mt-4 max-h-[70vh] w-64 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]">
           {children(() => setOpen(false))}
         </div>
       )}
@@ -45,20 +49,43 @@ export function TopBar() {
   const { t, lang, setLang } = useLang();
   const hour = new Date().getHours();
   const isOpen = hour >= 7;
+  const [solid, setSolid] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const itemCls =
     "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
+  const linkCls = `font-display text-base uppercase tracking-[0.14em] transition-colors hover:text-primary ${
+    solid ? "text-foreground" : "text-ink-foreground"
+  }`;
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
-        <div className="flex items-center gap-7">
-          <Link to="/" className="font-display text-xl uppercase tracking-[0.14em] text-foreground">
+    <header
+      className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
+        solid
+          ? "border-b border-border bg-background shadow-[var(--shadow-warm)]"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-5">
+        <div className="flex items-center gap-9">
+          <Link
+            to="/"
+            className={`font-display text-2xl uppercase tracking-[0.16em] transition-colors ${
+              solid ? "text-foreground" : "text-ink-foreground"
+            }`}
+          >
             {t("brand")}
           </Link>
 
-          <nav className="hidden items-center gap-6 lg:flex">
-            <Dropdown label={t("menuTitle")}>
+          <nav className="hidden items-center gap-8 lg:flex">
+            <Dropdown label={t("menuTitle")} solid={solid}>
               {(close) =>
                 CATEGORY_IDS.map((id) => (
                   <Link
@@ -74,7 +101,7 @@ export function TopBar() {
               }
             </Dropdown>
 
-            <Dropdown label={t("schedule")}>
+            <Dropdown label={t("schedule")} solid={solid}>
               {(close) =>
                 EVENTS.map((e) => (
                   <Link
@@ -90,26 +117,24 @@ export function TopBar() {
                 ))
               }
             </Dropdown>
-
-            <Link
-              to="/"
-              hash="galerija"
-              className="font-display text-sm uppercase tracking-[0.12em] text-foreground transition-colors hover:text-primary"
-            >
-              {t("gallery")}
-            </Link>
           </nav>
         </div>
 
         <div className="flex items-center gap-3">
-          <Link to="/" hash="rezervacii" className="btn-base btn-solid hidden py-2.5 text-xs md:inline-flex">
+          <Link to="/naracki" className="btn-base btn-solid hidden py-3 text-sm md:inline-flex">
             {t("orderNow")}
           </Link>
-          <Link to="/" hash="rezervacii" className="btn-base btn-solid hidden py-2.5 text-xs md:inline-flex">
+          <Link to="/rezervacii" className="btn-base btn-solid hidden py-3 text-sm md:inline-flex">
             {t("reserveTable")}
           </Link>
 
-          <span className="flex items-center gap-2 border border-border px-3 py-1.5 text-xs uppercase tracking-widest text-muted-foreground">
+          <span
+            className={`flex items-center gap-2 border px-3 py-2 text-xs uppercase tracking-widest ${
+              solid
+                ? "border-border text-muted-foreground"
+                : "border-ink-foreground/40 text-ink-foreground"
+            }`}
+          >
             <span
               className={`h-2 w-2 rounded-full ${isOpen ? "bg-primary" : "bg-destructive"}`}
               aria-hidden
@@ -117,15 +142,21 @@ export function TopBar() {
             {isOpen ? t("open") : t("closed")}
           </span>
 
-          <div className="flex overflow-hidden border border-border">
+          <div
+            className={`flex overflow-hidden border ${
+              solid ? "border-border" : "border-ink-foreground/40"
+            }`}
+          >
             {(["mk", "en"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-3 py-1.5 text-xs uppercase tracking-widest transition-colors ${
+                className={`px-3 py-2 text-xs uppercase tracking-widest transition-colors ${
                   lang === l
                     ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-secondary"
+                    : solid
+                      ? "text-foreground hover:bg-secondary"
+                      : "text-ink-foreground hover:bg-ink-foreground/15"
                 }`}
               >
                 {l === "mk" ? "МК" : "EN"}
