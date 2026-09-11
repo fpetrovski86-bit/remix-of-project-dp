@@ -49,35 +49,22 @@ export function TopBar() {
   const { t, lang, setLang } = useLang();
   const hour = new Date().getHours();
   const isOpen = hour >= 7;
-  const [solid, setSolid] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 60);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const solid = true;
 
   const itemCls =
     "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
-  const linkCls = `font-display text-base uppercase tracking-[0.14em] transition-colors hover:text-primary ${
+  const linkCls = `font-display text-lg uppercase tracking-[0.14em] transition-colors hover:text-primary ${
     solid ? "text-foreground" : "text-ink-foreground"
   }`;
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
-        solid
-          ? "border-b border-border bg-background shadow-[var(--shadow-warm)]"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-5">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background shadow-[var(--shadow-warm)]">
+      <div className="mx-auto flex min-h-24 max-w-7xl items-center justify-between gap-6 px-6 py-6">
         <div className="flex items-center gap-9">
           <Link
             to="/"
-            className={`font-display text-2xl uppercase tracking-[0.16em] transition-colors ${
+            className={`font-display text-3xl uppercase tracking-[0.16em] transition-colors ${
               solid ? "text-foreground" : "text-ink-foreground"
             }`}
           >
@@ -121,10 +108,10 @@ export function TopBar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link to="/naracki" className="btn-base btn-solid hidden py-3 text-sm md:inline-flex">
+          <Link to="/naracki" className="btn-base btn-solid hidden px-7 py-4 text-base md:inline-flex">
             {t("orderNow")}
           </Link>
-          <Link to="/rezervacii" className="btn-base btn-solid hidden py-3 text-sm md:inline-flex">
+          <Link to="/rezervacii" className="btn-base btn-solid hidden px-7 py-4 text-base md:inline-flex">
             {t("reserveTable")}
           </Link>
 
@@ -151,7 +138,7 @@ export function TopBar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-3 py-2 text-xs uppercase tracking-widest transition-colors ${
+                className={`px-4 py-3 text-sm uppercase tracking-widest transition-colors ${
                   lang === l
                     ? "bg-primary text-primary-foreground"
                     : solid

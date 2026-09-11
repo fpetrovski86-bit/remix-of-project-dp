@@ -6,7 +6,6 @@ import galleryImg from "@/assets/gallery.jpg";
 
 import { DishCard } from "@/components/site/DishCard";
 import { useLang } from "@/lib/i18n";
-import { EVENTS } from "@/lib/data";
 
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=Restoran+Trla+Makedonija";
@@ -101,33 +100,6 @@ function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string;
 
 
 
-function EventsCalendar() {
-  const { lang, t } = useLang();
-  return (
-    <div className="mx-auto mt-12 max-w-4xl divide-y divide-border overflow-hidden border border-border bg-card">
-      {EVENTS.map((e) => (
-        <Link
-          key={e.id}
-          to="/raspored/$id"
-          params={{ id: e.id }}
-          className="flex items-center gap-5 p-5 transition-colors hover:bg-secondary"
-        >
-          <div className="w-16 shrink-0 text-center">
-            <span className="font-display text-2xl text-primary">{e.d}</span>
-          </div>
-          <p className="flex-1 text-sm">{lang === "mk" ? e.mk : e.en}</p>
-          <span className="bg-secondary px-3 py-1 text-xs uppercase tracking-widest text-secondary-foreground">
-            {lang === "mk" ? e.tagMk : e.tagEn}
-          </span>
-        </Link>
-      ))}
-      <div className="bg-secondary/50 p-4 text-center text-xs uppercase tracking-widest text-muted-foreground">
-        {t("upcoming")}
-      </div>
-    </div>
-  );
-}
-
 function Home() {
   const { t } = useLang();
 
@@ -136,17 +108,22 @@ function Home() {
       <Hero />
 
       {/* Специјалитети */}
-      <section id="specijaliteti" className="section-pad px-5">
-        <div className="mx-auto max-w-7xl">
+      <section id="specijaliteti" className="section-pad bg-secondary/40 px-5">
+        <div className="mx-auto max-w-6xl">
           <SectionHead
             eyebrow={t("menuTitle")}
             title={t("todaySpecials")}
             text={t("specialsIntro")}
           />
-          <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 9 }).map((_, i) => (
+          <div className="mt-12 grid gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
               <DishCard key={i} />
             ))}
+          </div>
+          <div className="mt-14 text-center">
+            <Link to="/meni" className="btn-base btn-quiet border-primary px-12 py-4 text-base text-primary">
+              {t("menuBtn")}
+            </Link>
           </div>
         </div>
       </section>
@@ -171,14 +148,6 @@ function Home() {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Настани */}
-      <section id="nastani" className="section-pad px-5">
-        <div className="mx-auto max-w-7xl">
-          <SectionHead eyebrow="Calendar" title={t("events")} text={t("eventsIntro")} />
-          <EventsCalendar />
         </div>
       </section>
     </main>
