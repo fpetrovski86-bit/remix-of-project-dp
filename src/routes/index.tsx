@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
-import categoryImg from "@/assets/category.jpg";
 import galleryImg from "@/assets/gallery.jpg";
+
 import { DishCard } from "@/components/site/DishCard";
 import { useLang } from "@/lib/i18n";
 import { EVENTS } from "@/lib/data";
