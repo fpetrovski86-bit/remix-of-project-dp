@@ -65,9 +65,9 @@ function Hero() {
         <p className="mt-5 text-sm uppercase tracking-[0.2em] opacity-85">{t("hours")}</p>
 
         <div className="mt-9">
-          <a href="#meni" className="btn-base btn-solid px-10 py-4 text-base">
+          <Link to="/meni" className="btn-base btn-solid px-10 py-4 text-base">
             {t("menuBtn")}
-          </a>
+          </Link>
         </div>
 
         <div className="mt-5 flex flex-wrap justify-center gap-3">
@@ -77,10 +77,11 @@ function Hero() {
           <a href="#specijaliteti" className="btn-base btn-outline-gold">
             {t("todaySpecials")}
           </a>
-          <a href="#rezervacii" className="btn-base btn-outline-gold">
+          <Link to="/rezervacii" className="btn-base btn-outline-gold">
             {t("reservations")}
-          </a>
+          </Link>
         </div>
+
       </div>
     </section>
   );
