@@ -33,7 +33,7 @@
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
   --color-gold: var(--gold);
-  --font-display: "Barlow Condensed", "Oswald", sans-serif;
+  --font-display: "Oswald", "Barlow Condensed", sans-serif;
   --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
 }
 
