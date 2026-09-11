@@ -12,7 +12,7 @@ const dict = {
     hoursTitle: "Работно време",
     menuBtn: "Мени",
     findUs: "Најдете нè лесно",
-    todaySpecials: "Денешни специјалитети",
+    todaySpecials: "Специјалитети",
     specialsIntro:
       "Секој ден нешто ново од скарата и од шпоретот на баба — избор на нашиот готвач, подготвен со намирници од локални производители.",
     dishName: "Јадење",
@@ -65,7 +65,7 @@ const dict = {
     hoursTitle: "Working hours",
     menuBtn: "Menu",
     findUs: "Find us easily",
-    todaySpecials: "Today's specials",
+    todaySpecials: "Specialties",
     specialsIntro:
       "Something new every day from the grill and grandma's stove — our chef's picks, made with produce from local farmers.",
     dishName: "Dish",

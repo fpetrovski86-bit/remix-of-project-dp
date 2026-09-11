@@ -7,28 +7,28 @@ export function DishCard() {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="card-warm group flex flex-col overflow-hidden ">
-      <div className="aspect-[4/3] overflow-hidden">
-        <img
-          src={dishImg}
-          alt={t("dishName")}
-          loading="lazy"
-          width={800}
-          height={800}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-2xl">{t("dishName")}</h3>
-          <span className="whitespace-nowrap text-sm font-semibold text-primary">
-            {t("price")}
-          </span>
-        </div>
-        <button className="btn-base btn-quiet mt-auto w-full" onClick={() => setOpen(true)}>
-          {t("content")}
-        </button>
-      </div>
+    <article className="group text-center">
+      <button
+        type="button"
+        className="block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+        onClick={() => setOpen(true)}
+        aria-label={`${t("content")}: ${t("dishName")}`}
+      >
+        <span className="block aspect-[3/2] overflow-hidden bg-secondary">
+          <img
+            src={dishImg}
+            alt={t("dishName")}
+            loading="lazy"
+            width={800}
+            height={800}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </span>
+        <span className="mt-3 block font-display text-xl uppercase text-foreground">
+          {t("dishName")}
+        </span>
+        <span className="mt-1 block text-sm font-semibold text-primary">{t("price")}</span>
+      </button>
 
       {open && (
         <div
