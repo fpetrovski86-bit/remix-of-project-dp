@@ -50,6 +50,11 @@ const dict = {
     followUs: "Следете нè",
     rights: "Сите права задржани.",
     upcoming: "Претстојно",
+    schedule: "Распоред",
+    reserveTable: "Резервирај маса",
+    orderNow: "Нарачај сега",
+    eventDetails: "Детали за настанот",
+    eventIntro: "Повеќе информации за овој настан во Ресторан Трла.",
   },
   en: {
     brand: "Restaurant Trla",
@@ -98,6 +103,11 @@ const dict = {
     followUs: "Follow us",
     rights: "All rights reserved.",
     upcoming: "Upcoming",
+    schedule: "Schedule",
+    reserveTable: "Reserve a table",
+    orderNow: "Order now",
+    eventDetails: "Event details",
+    eventIntro: "More information about this event at Restaurant Trla.",
   },
 } as const;
 

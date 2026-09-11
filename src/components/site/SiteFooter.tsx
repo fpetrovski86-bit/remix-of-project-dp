@@ -13,7 +13,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <h3 className="font-display text-2xl text-gold">{t("visitUs")}</h3>
-          <div className="mt-4 overflow-hidden rounded-md border border-gold/20">
+          <div className="mt-4 overflow-hidden  border border-gold/20">
             <iframe
               title="Google Maps"
               src={MAPS_EMBED}

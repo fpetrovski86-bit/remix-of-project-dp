@@ -6,6 +6,7 @@ import categoryImg from "@/assets/category.jpg";
 import galleryImg from "@/assets/gallery.jpg";
 import { DishCard } from "@/components/site/DishCard";
 import { useLang } from "@/lib/i18n";
+import { EVENTS } from "@/lib/data";
 
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=Restoran+Trla+Makedonija";
@@ -90,6 +91,7 @@ function SectionHead({ eyebrow, title, text }: { eyebrow: string; title: string;
     <div className="mx-auto max-w-2xl text-center">
       <p className="eyebrow">{eyebrow}</p>
       <h2 className="mt-3 font-display text-4xl sm:text-5xl">{title}</h2>
+      <div className="diamond-rule mt-4" aria-hidden />
       {text && <p className="mt-4 text-muted-foreground">{text}</p>}
     </div>
   );
@@ -103,7 +105,7 @@ function ReservationForm() {
     setDone(true);
   };
   return (
-    <form onSubmit={submit} className="card-warm space-y-4 rounded-md p-7">
+    <form onSubmit={submit} className="card-warm space-y-4  p-7">
       <h3 className="font-display text-3xl">{t("reservations")}</h3>
       <p className="text-sm text-muted-foreground">{t("reservationsIntro")}</p>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -115,7 +117,7 @@ function ReservationForm() {
       </div>
       <label className="block text-sm">
         <span className="text-muted-foreground">{t("note")}</span>
-        <textarea rows={3} className="mt-1 w-full rounded-md border border-input bg-background p-3" />
+        <textarea rows={3} className="mt-1 w-full  border border-input bg-background p-3" />
       </label>
       <button className="btn-base btn-solid w-full">{t("send")}</button>
       {done && <p className="text-sm text-primary">{t("sent")}</p>}
@@ -131,7 +133,7 @@ function OrderForm() {
     setDone(true);
   };
   return (
-    <form onSubmit={submit} className="card-warm space-y-4 rounded-md p-7">
+    <form onSubmit={submit} className="card-warm space-y-4  p-7">
       <h3 className="font-display text-3xl">{t("orders")}</h3>
       <p className="text-sm text-muted-foreground">{t("ordersIntro")}</p>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -141,7 +143,7 @@ function OrderForm() {
       <Field label={t("address")} type="text" />
       <label className="block text-sm">
         <span className="text-muted-foreground">{t("order")}</span>
-        <textarea rows={4} className="mt-1 w-full rounded-md border border-input bg-background p-3" />
+        <textarea rows={4} className="mt-1 w-full  border border-input bg-background p-3" />
       </label>
       <button className="btn-base btn-solid w-full">{t("send")}</button>
       {done && <p className="text-sm text-primary">{t("sent")}</p>}
@@ -155,7 +157,7 @@ function Field({ label, type }: { label: string; type: string }) {
       <span className="text-muted-foreground">{label}</span>
       <input
         type={type}
-        className="mt-1 w-full rounded-md border border-input bg-background p-3"
+        className="mt-1 w-full  border border-input bg-background p-3"
       />
     </label>
   );
@@ -163,26 +165,23 @@ function Field({ label, type }: { label: string; type: string }) {
 
 function EventsCalendar() {
   const { lang, t } = useLang();
-  const events = [
-    { d: "05.09", mk: "Жива музика — тамбураши", en: "Live music — tamburitza band", tag: { mk: "Петок", en: "Friday" } },
-    { d: "12.09", mk: "Вечер на скара", en: "Grill evening", tag: { mk: "Петок", en: "Friday" } },
-    { d: "20.09", mk: "Резервиран ден — свадба", en: "Reserved day — wedding", tag: { mk: "Резервирано", en: "Reserved" } },
-    { d: "04.10", mk: "Жива музика — народни песни", en: "Live music — folk songs", tag: { mk: "Петок", en: "Friday" } },
-    { d: "18.10", mk: "Резервиран ден — крштевка", en: "Reserved day — christening", tag: { mk: "Резервирано", en: "Reserved" } },
-    { d: "31.12", mk: "Дочек на Нова Година", en: "New Year's Eve celebration", tag: { mk: "Празник", en: "Holiday" } },
-  ];
   return (
-    <div className="mx-auto mt-12 max-w-4xl divide-y divide-border overflow-hidden rounded-md border border-border bg-card">
-      {events.map((e) => (
-        <div key={e.d} className="flex items-center gap-5 p-5">
+    <div className="mx-auto mt-12 max-w-4xl divide-y divide-border overflow-hidden border border-border bg-card">
+      {EVENTS.map((e) => (
+        <Link
+          key={e.id}
+          to="/raspored/$id"
+          params={{ id: e.id }}
+          className="flex items-center gap-5 p-5 transition-colors hover:bg-secondary"
+        >
           <div className="w-16 shrink-0 text-center">
             <span className="font-display text-2xl text-primary">{e.d}</span>
           </div>
           <p className="flex-1 text-sm">{lang === "mk" ? e.mk : e.en}</p>
-          <span className="rounded-full bg-secondary px-3 py-1 text-xs uppercase tracking-widest text-secondary-foreground">
-            {lang === "mk" ? e.tag.mk : e.tag.en}
+          <span className="bg-secondary px-3 py-1 text-xs uppercase tracking-widest text-secondary-foreground">
+            {lang === "mk" ? e.tagMk : e.tagEn}
           </span>
-        </div>
+        </Link>
       ))}
       <div className="bg-secondary/50 p-4 text-center text-xs uppercase tracking-widest text-muted-foreground">
         {t("upcoming")}
@@ -220,7 +219,7 @@ function Home() {
           <SectionHead eyebrow="à la carte" title={t("menuTitle")} text={t("menuIntro")} />
           <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 12 }).map((_, i) => (
-              <article key={i} className="card-warm group overflow-hidden rounded-md">
+              <article key={i} className="card-warm group overflow-hidden ">
                 <div className="aspect-[9/6] overflow-hidden">
                   <img
                     src={categoryImg}
@@ -270,7 +269,7 @@ function Home() {
                 loading="lazy"
                 width={900}
                 height={900}
-                className="aspect-square w-full rounded-md object-cover transition-transform duration-500 hover:scale-[1.03]"
+                className="aspect-square w-full  object-cover transition-transform duration-500 hover:scale-[1.03]"
               />
             ))}
           </div>
