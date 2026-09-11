@@ -7,7 +7,7 @@ export function DishCard() {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="card-warm group flex flex-col overflow-hidden rounded-md">
+    <article className="card-warm group flex flex-col overflow-hidden ">
       <div className="aspect-[4/3] overflow-hidden">
         <img
           src={dishImg}
@@ -36,7 +36,7 @@ export function DishCard() {
           onClick={() => setOpen(false)}
         >
           <div
-            className="card-warm w-full max-w-md rounded-md p-6"
+            className="card-warm w-full max-w-md  p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">

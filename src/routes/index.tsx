@@ -105,7 +105,7 @@ function ReservationForm() {
     setDone(true);
   };
   return (
-    <form onSubmit={submit} className="card-warm space-y-4 rounded-md p-7">
+    <form onSubmit={submit} className="card-warm space-y-4  p-7">
       <h3 className="font-display text-3xl">{t("reservations")}</h3>
       <p className="text-sm text-muted-foreground">{t("reservationsIntro")}</p>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -117,7 +117,7 @@ function ReservationForm() {
       </div>
       <label className="block text-sm">
         <span className="text-muted-foreground">{t("note")}</span>
-        <textarea rows={3} className="mt-1 w-full rounded-md border border-input bg-background p-3" />
+        <textarea rows={3} className="mt-1 w-full  border border-input bg-background p-3" />
       </label>
       <button className="btn-base btn-solid w-full">{t("send")}</button>
       {done && <p className="text-sm text-primary">{t("sent")}</p>}
@@ -133,7 +133,7 @@ function OrderForm() {
     setDone(true);
   };
   return (
-    <form onSubmit={submit} className="card-warm space-y-4 rounded-md p-7">
+    <form onSubmit={submit} className="card-warm space-y-4  p-7">
       <h3 className="font-display text-3xl">{t("orders")}</h3>
       <p className="text-sm text-muted-foreground">{t("ordersIntro")}</p>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -143,7 +143,7 @@ function OrderForm() {
       <Field label={t("address")} type="text" />
       <label className="block text-sm">
         <span className="text-muted-foreground">{t("order")}</span>
-        <textarea rows={4} className="mt-1 w-full rounded-md border border-input bg-background p-3" />
+        <textarea rows={4} className="mt-1 w-full  border border-input bg-background p-3" />
       </label>
       <button className="btn-base btn-solid w-full">{t("send")}</button>
       {done && <p className="text-sm text-primary">{t("sent")}</p>}
@@ -157,7 +157,7 @@ function Field({ label, type }: { label: string; type: string }) {
       <span className="text-muted-foreground">{label}</span>
       <input
         type={type}
-        className="mt-1 w-full rounded-md border border-input bg-background p-3"
+        className="mt-1 w-full  border border-input bg-background p-3"
       />
     </label>
   );
@@ -219,7 +219,7 @@ function Home() {
           <SectionHead eyebrow="à la carte" title={t("menuTitle")} text={t("menuIntro")} />
           <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 12 }).map((_, i) => (
-              <article key={i} className="card-warm group overflow-hidden rounded-md">
+              <article key={i} className="card-warm group overflow-hidden ">
                 <div className="aspect-[9/6] overflow-hidden">
                   <img
                     src={categoryImg}
@@ -269,7 +269,7 @@ function Home() {
                 loading="lazy"
                 width={900}
                 height={900}
-                className="aspect-square w-full rounded-md object-cover transition-transform duration-500 hover:scale-[1.03]"
+                className="aspect-square w-full  object-cover transition-transform duration-500 hover:scale-[1.03]"
               />
             ))}
           </div>
