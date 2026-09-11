@@ -123,12 +123,14 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius);
+  border-radius: 0;
+  font-family: var(--font-display);
   font-size: 0.875rem;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.75rem 1.5rem;
-  transition: all 0.25s ease;
+  padding: 0.85rem 1.75rem;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
@@ -141,12 +143,13 @@
 }
 
 @utility btn-outline-gold {
-  border: 1px solid color-mix(in oklab, var(--color-gold) 70%, transparent);
+  border: 1px solid color-mix(in oklab, white 80%, transparent);
   color: var(--color-ink-foreground);
-  background-color: color-mix(in oklab, black 22%, transparent);
+  background-color: color-mix(in oklab, black 25%, transparent);
   backdrop-filter: blur(4px);
   &:hover {
-    background-color: color-mix(in oklab, var(--color-gold) 25%, transparent);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
 
