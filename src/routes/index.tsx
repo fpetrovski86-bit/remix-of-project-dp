@@ -6,6 +6,7 @@ import categoryImg from "@/assets/category.jpg";
 import galleryImg from "@/assets/gallery.jpg";
 import { DishCard } from "@/components/site/DishCard";
 import { useLang } from "@/lib/i18n";
+import { EVENTS } from "@/lib/data";
 
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=Restoran+Trla+Makedonija";
