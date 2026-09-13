@@ -48,11 +48,6 @@ function EventPage() {
           <Row label={t("hoursTitle")} value={t("hours")} />
         </div>
 
-        <div className="mt-12 text-center">
-          <Link to="/" hash="rezervacii" className="btn-base btn-solid">
-            {t("reserveTable")}
-          </Link>
-        </div>
       </div>
     </main>
   );
