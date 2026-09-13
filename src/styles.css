@@ -34,7 +34,7 @@
   --color-ink-foreground: var(--ink-foreground);
   --color-gold: var(--gold);
   --font-display: "Playfair Display", "Georgia", serif;
-  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {

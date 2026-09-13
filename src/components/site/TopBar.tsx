@@ -60,18 +60,18 @@ export function TopBar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background shadow-[var(--shadow-warm)]">
-      <div className="mx-auto flex min-h-24 max-w-7xl items-center justify-between gap-6 px-6 py-6">
-        <div className="flex items-center gap-9">
+      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-5 px-5 py-5">
+        <div className="flex items-center gap-8">
           <Link
             to="/"
-            className={`font-display text-4xl font-bold uppercase tracking-[0.14em] transition-colors ${
+            className={`font-display text-3xl font-bold uppercase tracking-[0.12em] transition-colors ${
               solid ? "text-foreground" : "text-ink-foreground"
             }`}
           >
             {t("brand")}
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             <Dropdown label={t("menuTitle")} solid={solid}>
               {(close) =>
                 CATEGORY_IDS.map((id) => (
@@ -108,15 +108,15 @@ export function TopBar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link to="/naracki" className="btn-base btn-solid hidden px-7 py-4 text-base md:inline-flex">
+          <Link to="/naracki" className="btn-base btn-solid hidden px-6 py-3 text-sm md:inline-flex">
             {t("orderNow")}
           </Link>
-          <Link to="/rezervacii" className="btn-base btn-solid hidden px-7 py-4 text-base md:inline-flex">
+          <Link to="/rezervacii" className="btn-base btn-solid hidden px-6 py-3 text-sm md:inline-flex">
             {t("reserveTable")}
           </Link>
 
           <span
-            className={`flex items-center gap-2 border px-3 py-2 text-xs uppercase tracking-widest ${
+            className={`flex items-center gap-2 border px-3 py-2 text-[10px] uppercase tracking-widest ${
               solid
                 ? "border-border text-muted-foreground"
                 : "border-ink-foreground/40 text-ink-foreground"
@@ -138,7 +138,7 @@ export function TopBar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-4 py-3 text-sm uppercase tracking-widest transition-colors ${
+                className={`px-3 py-2 text-xs uppercase tracking-widest transition-colors ${
                   lang === l
                     ? "bg-primary text-primary-foreground"
                     : solid
