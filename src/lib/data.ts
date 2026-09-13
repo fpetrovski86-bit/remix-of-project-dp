@@ -1,4 +1,6 @@
-export const CATEGORY_IDS = Array.from({ length: 12 }, (_, i) => String(i + 1));
+import { MENU } from "./menu-data";
+
+export const CATEGORY_IDS = MENU.map((c) => c.id);
 
 export const EVENTS = [
   { id: "1", d: "05.09", mk: "Жива музика — тамбураши", en: "Live music — tamburitza band", tagMk: "Петок", tagEn: "Friday" },

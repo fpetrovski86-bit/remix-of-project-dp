@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { CATEGORY_IDS, EVENTS } from "@/lib/data";
+import { EVENTS } from "@/lib/data";
+import { MENU } from "@/lib/menu-data";
 
 function Dropdown({
   label,
@@ -56,7 +57,7 @@ function Dropdown({
 export function TopBar() {
   const { t, lang, setLang } = useLang();
   const hour = new Date().getHours();
-  const isOpen = hour >= 7;
+  const isOpen = hour >= 9 && hour < 23;
   const solid = true;
 
   const itemCls =
@@ -83,11 +84,11 @@ export function TopBar() {
              <Dropdown label={t("menuTitle")} solid={solid} wide>
                {(close) => (
                  <div className="mx-auto grid max-w-7xl grid-cols-2 px-5 py-7 sm:grid-cols-3 lg:grid-cols-4">
-                   {CATEGORY_IDS.map((id, index) => (
+                   {MENU.map((cat, index) => (
                      <Link
-                       key={id}
+                       key={cat.id}
                        to="/kategorija/$id"
-                       params={{ id }}
+                       params={{ id: cat.id }}
                        onClick={close}
                        className={`flex min-h-14 items-center border-b border-border px-5 py-3 font-display text-base font-semibold uppercase text-foreground transition-colors hover:bg-secondary hover:text-primary sm:text-lg ${
                          index % 2 !== 0 ? "border-l" : ""
@@ -95,7 +96,7 @@ export function TopBar() {
                          index % 4 !== 0 ? "lg:border-l" : "lg:border-l-0"
                        }`}
                      >
-                       {t("category")} {id}
+                       {cat.name}
                      </Link>
                    ))}
                  </div>

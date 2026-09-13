@@ -1,18 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import categoryImg from "@/assets/category.jpg";
 import { useLang } from "@/lib/i18n";
-import { CATEGORY_IDS } from "@/lib/data";
+import { MENU } from "@/lib/menu-data";
 
 export const Route = createFileRoute("/meni")({
   head: () => ({
     meta: [
-      { title: "Мени — Ресторан Трла" },
+      { title: "Мени — Дион Центар" },
       {
         name: "description",
-        content: "Мени на Ресторан Трла: јадења и пијалоци подредени по категории.",
+        content: "Мени на Дион Центар: појадок, салати, тестенини, скара, пица и десерти.",
       },
-      { property: "og:title", content: "Мени — Ресторан Трла" },
-      { property: "og:description", content: "Јадења и пијалоци подредени по категории." },
+      { property: "og:title", content: "Мени — Дион Центар" },
+      { property: "og:description", content: "Јадења подредени по категории со цени." },
     ],
   }),
   component: MenuPage,
@@ -35,12 +34,12 @@ function MenuPage() {
         </div>
 
         <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {CATEGORY_IDS.map((id) => (
-            <article key={id} className="card-warm group overflow-hidden">
+          {MENU.map((cat) => (
+            <article key={cat.id} className="card-warm group overflow-hidden">
               <div className="aspect-[9/6] overflow-hidden">
                 <img
-                  src={categoryImg}
-                  alt={`${t("category")} ${id}`}
+                  src={cat.items[0]?.img}
+                  alt={cat.name}
                   loading="lazy"
                   width={900}
                   height={700}
@@ -48,10 +47,12 @@ function MenuPage() {
                 />
               </div>
               <div className="flex items-center justify-between gap-3 p-5">
-                <h2 className="font-display text-2xl">
-                  {t("category")} {id}
-                </h2>
-                <Link to="/kategorija/$id" params={{ id }} className="btn-base btn-quiet">
+                <h2 className="font-display text-xl uppercase">{cat.name}</h2>
+                <Link
+                  to="/kategorija/$id"
+                  params={{ id: cat.id }}
+                  className="btn-base btn-quiet shrink-0"
+                >
                   {t("browse")}
                 </Link>
               </div>

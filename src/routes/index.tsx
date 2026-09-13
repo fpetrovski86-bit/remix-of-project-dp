@@ -5,24 +5,31 @@ import hero2 from "@/assets/hero-2.jpg";
 import galleryImg from "@/assets/gallery.jpg";
 
 import { DishCard } from "@/components/site/DishCard";
+import { MENU } from "@/lib/menu-data";
 import { useLang } from "@/lib/i18n";
 
-const MAPS_LINK =
-  "https://www.google.com/maps/search/?api=1&query=Restoran+Trla+Makedonija";
+const MAPS_LINK = "https://maps.google.com/?q=41.995896,21.433633";
+
+const SPECIALS = [
+  MENU.find((c) => c.id === "skara")?.items[0],
+  MENU.find((c) => c.id === "pica-34cm")?.items[6],
+  MENU.find((c) => c.id === "tradicionalna-hrana")?.items[1],
+  MENU.find((c) => c.id === "deserti")?.items[1],
+].filter(Boolean);
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ресторан Трла — традиционална кујна и скара" },
+      { title: "Дион Центар — ресторан во Скопје, скара и домашна кујна" },
       {
         name: "description",
         content:
-          "Ресторан Трла: домашна традиционална кујна, скара и пријатна атмосфера. Отворено секој ден од 07:00 до 00:00. Мени, резервации и нарачки.",
+          "Дион Центар, Кеј 13-ти Ноември, Скопје: скара, пица, тестенини и домашна кујна. Отворено секој ден 09:00 – 23:00.",
       },
-      { property: "og:title", content: "Ресторан Трла" },
+      { property: "og:title", content: "Дион Центар — ресторан во Скопје" },
       {
         property: "og:description",
-        content: "Традиционална кујна, скара и пријатна атмосфера. Отворено секој ден 07:00 – 00:00.",
+        content: "Скара, пица, тестенини и домашна кујна. Отворено секој ден 09:00 – 23:00.",
       },
     ],
   }),
@@ -116,8 +123,8 @@ function Home() {
             text={t("specialsIntro")}
           />
           <div className="mt-12 grid gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <DishCard key={i} />
+            {SPECIALS.map((item) => (
+              <DishCard key={item!.name} item={item!} />
             ))}
           </div>
           <div className="mt-14 text-center">
