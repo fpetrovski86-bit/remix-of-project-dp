@@ -1,8 +1,40 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import galleryImg from "@/assets/gallery.jpg";
+import dion1 from "@/assets/dion/dion-1.jpg.asset.json";
+import dion2 from "@/assets/dion/dion-2.jpg.asset.json";
+import dion3 from "@/assets/dion/dion-3.jpg.asset.json";
+import dion4 from "@/assets/dion/dion-4.jpg.asset.json";
+import dion5 from "@/assets/dion/dion-5.jpg.asset.json";
+import dion6 from "@/assets/dion/dion-6.jpg.asset.json";
+import dion7 from "@/assets/dion/dion-7.jpg.asset.json";
+import dion8 from "@/assets/dion/dion-8.jpg.asset.json";
+import dion9 from "@/assets/dion/dion-9.jpg.asset.json";
+import dion10 from "@/assets/dion/dion-10.jpg.asset.json";
+import dion11 from "@/assets/dion/dion-11.jpg.asset.json";
+import dion12 from "@/assets/dion/dion-12.jpg.asset.json";
+import dion13 from "@/assets/dion/dion-13.jpg.asset.json";
+import dion14 from "@/assets/dion/dion-14.jpg.asset.json";
+import dion15 from "@/assets/dion/dion-15.jpg.asset.json";
+import dion16 from "@/assets/dion/dion-16.jpg.asset.json";
+import dion17 from "@/assets/dion/dion-17.jpg.asset.json";
+import dion18 from "@/assets/dion/dion-18.jpg.asset.json";
+import dion19 from "@/assets/dion/dion-19.jpg.asset.json";
+
+const HERO_IMAGES = [dion1.url, dion2.url, dion3.url];
+const GALLERY_ASPECTS = [
+  "aspect-[3/4]",
+  "aspect-square",
+  "aspect-[4/5]",
+  "aspect-[4/3]",
+  "aspect-[2/3]",
+  "aspect-[5/4]",
+  "aspect-square",
+  "aspect-[3/4]",
+];
+const GALLERY_IMAGES = [
+  dion4, dion5, dion6, dion7, dion8, dion9, dion10, dion11,
+  dion12, dion13, dion14, dion15, dion16, dion17, dion18, dion19,
+].map((a) => a.url);
 
 import { DishCard } from "@/components/site/DishCard";
 import { MENU } from "@/lib/menu-data";
@@ -38,7 +70,7 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   const { t } = useLang();
-  const images = [hero1, hero2];
+  const images = HERO_IMAGES;
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -142,16 +174,16 @@ function Home() {
       <section id="galerija" className="section-pad bg-secondary/40 px-5">
         <div className="mx-auto max-w-7xl">
           <SectionHead eyebrow="Trla" title={t("gallery")} text={t("galleryIntro")} />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {Array.from({ length: 15 }).map((_, i) => (
+          <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4 [column-fill:_balance]">
+            {GALLERY_IMAGES.map((src, i) => (
               <img
-                key={i}
-                src={galleryImg}
+                key={src}
+                src={src}
                 alt={`${t("gallery")} ${i + 1}`}
                 loading="lazy"
-                width={900}
-                height={900}
-                className="aspect-square w-full  object-cover transition-transform duration-500 hover:scale-[1.03]"
+                className={`mb-4 w-full break-inside-avoid object-cover transition-transform duration-500 hover:scale-[1.03] ${
+                  GALLERY_ASPECTS[i % GALLERY_ASPECTS.length]
+                }`}
               />
             ))}
           </div>
