@@ -60,7 +60,7 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   const { t } = useLang();
-  const images = [hero1, hero2];
+  const images = HERO_IMAGES;
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
@@ -164,16 +164,16 @@ function Home() {
       <section id="galerija" className="section-pad bg-secondary/40 px-5">
         <div className="mx-auto max-w-7xl">
           <SectionHead eyebrow="Trla" title={t("gallery")} text={t("galleryIntro")} />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {Array.from({ length: 15 }).map((_, i) => (
+          <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4 [column-fill:_balance]">
+            {GALLERY_IMAGES.map((src, i) => (
               <img
-                key={i}
-                src={galleryImg}
+                key={src}
+                src={src}
                 alt={`${t("gallery")} ${i + 1}`}
                 loading="lazy"
-                width={900}
-                height={900}
-                className="aspect-square w-full  object-cover transition-transform duration-500 hover:scale-[1.03]"
+                className={`mb-4 w-full break-inside-avoid object-cover transition-transform duration-500 hover:scale-[1.03] ${
+                  GALLERY_ASPECTS[i % GALLERY_ASPECTS.length]
+                }`}
               />
             ))}
           </div>
