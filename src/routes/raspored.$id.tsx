@@ -5,16 +5,18 @@ import { EVENTS } from "@/lib/data";
 export const Route = createFileRoute("/raspored/$id")({
   head: () => ({
     meta: [
-      { title: "Настан — Ресторан Трла" },
+      { title: "Настан — Ресторан Дион" },
       {
         name: "description",
-        content: "Детали за настан од распоредот на Ресторан Трла: датум, тип и информации.",
+        content: "Детали за настан од распоредот на Ресторан Дион: датум, тип и информации.",
       },
-      { property: "og:title", content: "Настан — Ресторан Трла" },
+      { property: "og:title", content: "Настан — Ресторан Дион" },
       {
         property: "og:description",
-        content: "Детали за настан од распоредот на Ресторан Трла.",
+        content: "Детали за настан од распоредот на Ресторан Дион.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: EventPage,

@@ -5,13 +5,15 @@ import { useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/naracki")({
   head: () => ({
     meta: [
-      { title: "Нарачки — Ресторан Трла" },
+      { title: "Нарачки — Ресторан Дион" },
       {
         name: "description",
-        content: "Нарачајте храна за дома или за понесување од Ресторан Трла.",
+        content: "Нарачајте храна за дома или за понесување од Ресторан Дион.",
       },
-      { property: "og:title", content: "Нарачки — Ресторан Трла" },
+      { property: "og:title", content: "Нарачки — Ресторан Дион" },
       { property: "og:description", content: "Нарачајте храна за дома или за понесување." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: OrdersPage,
@@ -41,7 +43,7 @@ function OrdersPage() {
           {t("back")}
         </Link>
         <div className="text-center">
-          <p className="eyebrow">Trla</p>
+          <p className="eyebrow">Dion</p>
           <h1 className="mt-3 font-display text-4xl sm:text-5xl">{t("orders")}</h1>
           <div className="diamond-rule mt-4" aria-hidden />
           <p className="mt-4 text-muted-foreground">{t("ordersIntro")}</p>

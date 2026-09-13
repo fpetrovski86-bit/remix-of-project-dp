@@ -81,15 +81,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ресторан Трла" },
+      { title: "Ресторан Дион" },
       {
         name: "description",
-        content: "Ресторан Трла — традиционална кујна, скара и пријатна атмосфера.",
+        content: "Ресторан Дион — традиционална кујна, скара и пријатна атмосфера.",
       },
-      { property: "og:title", content: "Ресторан Трла" },
+      { property: "og:title", content: "Ресторан Дион" },
       {
         property: "og:description",
-        content: "Ресторан Трла — традиционална кујна, скара и пријатна атмосфера.",
+        content: "Ресторан Дион — традиционална кујна, скара и пријатна атмосфера.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -105,7 +105,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Marck+Script&display=swap",
+      },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
 

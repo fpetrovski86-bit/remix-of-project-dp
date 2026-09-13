@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { EVENTS } from "@/lib/data";
 import { MENU } from "@/lib/menu-data";
+import dionLogo from "@/assets/dion-logo.png";
 
 function Dropdown({
   label,
@@ -56,9 +57,25 @@ function Dropdown({
 
 export function TopBar() {
   const { t, lang, setLang } = useLang();
-  const hour = new Date().getHours();
-  const isOpen = hour >= 9 && hour < 23;
+  const [isOpen, setIsOpen] = useState(false);
   const solid = true;
+
+  useEffect(() => {
+    const updateOpenStatus = () => {
+      const hour = Number(
+        new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          hour12: false,
+          timeZone: "Europe/Skopje",
+        }).format(new Date()),
+      );
+      setIsOpen(hour >= 9 && hour < 23);
+    };
+
+    updateOpenStatus();
+    const interval = window.setInterval(updateOpenStatus, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
 
   const itemCls =
     "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
@@ -69,15 +86,20 @@ export function TopBar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-border bg-background shadow-[var(--shadow-warm)]">
-      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-5 px-5 py-5">
-        <div className="flex items-center gap-8">
+      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-5 sm:px-5">
+        <div className="flex min-w-0 items-center gap-8">
           <Link
             to="/"
-            className={`font-display text-3xl font-bold uppercase transition-colors ${
-              solid ? "text-foreground" : "text-ink-foreground"
-            }`}
+            aria-label={t("brand")}
+            className="shrink-0 transition-opacity hover:opacity-80"
           >
-            {t("brand")}
+            <img
+              src={dionLogo}
+              alt={t("brand")}
+              width={846}
+              height={297}
+              className="h-auto w-28 object-contain sm:w-40 lg:w-48"
+            />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">

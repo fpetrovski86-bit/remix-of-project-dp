@@ -5,13 +5,15 @@ import { useLang } from "@/lib/i18n";
 export const Route = createFileRoute("/rezervacii")({
   head: () => ({
     meta: [
-      { title: "Резервации — Ресторан Трла" },
+      { title: "Резервации — Ресторан Дион" },
       {
         name: "description",
-        content: "Резервирајте маса во Ресторан Трла. Отворено секој ден од 07:00 до 00:00.",
+        content: "Резервирајте маса во Ресторан Дион. Отворено секој ден од 09:00 до 23:00.",
       },
-      { property: "og:title", content: "Резервации — Ресторан Трла" },
-      { property: "og:description", content: "Резервирајте маса во Ресторан Трла." },
+      { property: "og:title", content: "Резервации — Ресторан Дион" },
+      { property: "og:description", content: "Резервирајте маса во Ресторан Дион." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ReservationsPage,
@@ -41,7 +43,7 @@ function ReservationsPage() {
           {t("back")}
         </Link>
         <div className="text-center">
-          <p className="eyebrow">Trla</p>
+          <p className="eyebrow">Dion</p>
           <h1 className="mt-3 font-display text-4xl sm:text-5xl">{t("reservations")}</h1>
           <div className="diamond-rule mt-4" aria-hidden />
           <p className="mt-4 text-muted-foreground">{t("reservationsIntro")}</p>
