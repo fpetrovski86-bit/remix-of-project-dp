@@ -1,9 +1,7 @@
 import { useLang } from "@/lib/i18n";
 
-const MAPS_LINK =
-  "https://www.google.com/maps/search/?api=1&query=Restoran+Trla+Makedonija";
-const MAPS_EMBED =
-  "https://www.google.com/maps?q=Restoran%20Trla%20Makedonija&output=embed";
+const MAPS_LINK = "https://maps.google.com/?q=41.995896,21.433633";
+const MAPS_EMBED = "https://www.google.com/maps?q=41.995896,21.433633&z=16&output=embed";
 
 export function SiteFooter() {
   const { t } = useLang();
@@ -35,15 +33,11 @@ export function SiteFooter() {
         <div>
           <h3 className="font-display text-2xl text-gold">{t("contactUs")}</h3>
           <p className="mt-4 text-sm opacity-80">
-            <a href="tel:+38970123456" className="hover:text-gold">
-              +389 70 123 456
+            <a href="tel:+38923101030" className="hover:text-gold">
+              +389 2 310 1030
             </a>
           </p>
-          <p className="mt-2 text-sm opacity-80">
-            <a href="mailto:info@restorantrla.mk" className="hover:text-gold">
-              info@restorantrla.mk
-            </a>
-          </p>
+          <p className="mt-2 text-sm opacity-80">Кеј 13-ти Ноември, 1000 Скопје</p>
         </div>
 
         <div>
