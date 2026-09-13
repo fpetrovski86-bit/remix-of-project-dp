@@ -12,6 +12,8 @@ export const Route = createFileRoute("/meni")({
       },
       { property: "og:title", content: "Мени — Дион Центар" },
       { property: "og:description", content: "Јадења подредени по категории со цени." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: MenuPage,

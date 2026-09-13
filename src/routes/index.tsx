@@ -63,6 +63,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Скара, пица, тестенини и домашна кујна. Отворено секој ден 09:00 – 23:00.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -96,8 +98,8 @@ function Hero() {
       <div className="absolute inset-0 bg-ink/65" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-5 pt-24 text-center text-ink-foreground">
-        <p className="text-xs uppercase tracking-[0.4em] text-gold">Est. 1998</p>
-        <h1 className="mt-5 font-display text-4xl leading-tight sm:text-6xl">
+        <p className="text-xs uppercase text-gold">Est. 2009</p>
+        <h1 className="hero-script mt-5 text-5xl leading-tight text-gold sm:text-7xl">
           {t("heroTitle")}
         </h1>
         <p className="mt-5 text-sm uppercase tracking-[0.2em] opacity-85">{t("hours")}</p>
@@ -152,7 +154,6 @@ function Home() {
           <SectionHead
             eyebrow={t("menuTitle")}
             title={t("todaySpecials")}
-            text={t("specialsIntro")}
           />
           <div className="mt-12 grid gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
             {SPECIALS.map((item) => (
@@ -173,7 +174,7 @@ function Home() {
       {/* Галерија */}
       <section id="galerija" className="section-pad bg-secondary/40 px-5">
         <div className="mx-auto max-w-7xl">
-          <SectionHead eyebrow="Trla" title={t("gallery")} text={t("galleryIntro")} />
+          <SectionHead eyebrow="Dion" title={t("gallery")} text={t("galleryIntro")} />
           <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4 [column-fill:_balance]">
             {GALLERY_IMAGES.map((src, i) => (
               <img

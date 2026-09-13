@@ -16,6 +16,8 @@ export const Route = createFileRoute("/kategorija/$id")({
         property: "og:description",
         content: "Разгледајте ги јадењата од оваа категорија во менито на Дион Центар.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: CategoryPage,
