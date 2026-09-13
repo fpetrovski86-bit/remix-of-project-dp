@@ -1,0 +1,252 @@
+export type MenuItem = {
+  name: string;
+  desc: string;
+  price: number;
+  img: string;
+};
+
+export type MenuCategory = {
+  id: string;
+  name: string;
+  items: MenuItem[];
+};
+
+export const MENU: MenuCategory[] = [
+  {
+    id: "coca-cola-combo",
+    name: "COCA COLA COMBO",
+    items: [
+      { name: "Combo CC: Капричиоза пица 34cm + Coca Cola 0.45ml", desc: "Пица тесто, кечап, кашкавал, шунка, печурки", price: 449, img: "https://imageproxy.wolt.com/assets/689b205c9e033e41ab6f8e84" },
+      { name: "Combo CC: Пеперончино пица 34cm + Coca Cola 0.45ml", desc: "Пица тесто, кечап, кашкавал, кулен", price: 469, img: "https://imageproxy.wolt.com/assets/689b20749e033e41ab6f8e8e" },
+      { name: "Combo CC: Кватро Формаџи пица 34cm + Coca Cola 0.45ml", desc: "Пица тесто, кечап, кашкавал, моцарела, рокфорд", price: 499, img: "https://imageproxy.wolt.com/assets/689b2091c67a5c9ffb5066e1" },
+      { name: "Combo CC: Пастрмајлија свинска + Coca Cola 0.45ml", desc: "Свинско месо, јајце", price: 409, img: "https://imageproxy.wolt.com/assets/689b20dd9ec96fca3dd5fdee" },
+      { name: "Combo CC: Пастрмајлија пилешка + Coca Cola 0.45ml", desc: "Пилешко месо, јајце", price: 409, img: "https://imageproxy.wolt.com/assets/689b20e29ec96fca3dd5fdf0" },
+      { name: "Combo CC: Пармезан паста + Coca Cola 0.45ml", desc: "Шампињони, говедски пршут, хопла, пармезан", price: 469, img: "https://imageproxy.wolt.com/assets/689b21159e033e41ab6f8eb1" },
+    ],
+  },
+  {
+    id: "pojadok",
+    name: "ПОЈАДОК",
+    items: [
+      { name: "Телешка чорба", desc: "Со лепче", price: 229, img: "https://imageproxy.wolt.com/assets/67a2233b3cbcbb5116a3e803" },
+      { name: "Потаж од зеленчук 350гр", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67a21b3c3a026e62a622563a" },
+      { name: "Појадок лондон", desc: "2 јајца на око, 2 лепчиња, шампињони, црвен грав", price: 189, img: "https://imageproxy.wolt.com/assets/67a217703cbcbb5116a3e64f" },
+      { name: "Пржени лепчиња 200gr", desc: "3 пржени лепчиња (во јајце) послужени со парче сирење и домат", price: 189, img: "https://imageproxy.wolt.com/assets/67a21ae8178054629979f288" },
+      { name: "Панцерота", desc: "Панцерота со шунка и кашкавал", price: 299, img: "https://imageproxy.wolt.com/assets/67a218f6178054629979f254" },
+      { name: "Омлет", desc: "Омлет со шунка, кашкавал и сирење", price: 219, img: "https://imageproxy.wolt.com/assets/67a224553cbcbb5116a3e846" },
+      { name: "Појадок дион", desc: "2 јајца на око, 2 лепчиња, сланина, домат", price: 249, img: "https://imageproxy.wolt.com/assets/67a217773cbcbb5116a3e650" },
+      { name: "Појадок Монте Кристо", desc: "Лепчиња, јајце, кашкавал, шунка, домат", price: 249, img: "https://imageproxy.wolt.com/assets/67a2179a3cbcbb5116a3e653" },
+    ],
+  },
+  {
+    id: "salati",
+    name: "САЛАТИ",
+    items: [
+      { name: "Грчка салата", desc: "Домат, краставица, кромид, сирење, оригано, маслинки", price: 239, img: "https://imageproxy.wolt.com/assets/67a22602178054629979f423" },
+      { name: "Македонска салата", desc: "Домат, кромид, пиперка, маслинки, магдонос", price: 239, img: "https://imageproxy.wolt.com/assets/67a227ea3cbcbb5116a3e913" },
+      { name: "Шопска салата", desc: "Домат, краставица, кромид, сирење, маслинки", price: 239, img: "https://imageproxy.wolt.com/assets/67a223e33cbcbb5116a3e831" },
+      { name: "Салата Дион", desc: "Ајсберг, рукола, црвена пиперка, краставица, печурки, шери домат, семки од тиква, семки од сончоглед, ленено семе", price: 359, img: "https://imageproxy.wolt.com/assets/67a21d693cbcbb5116a3e711" },
+      { name: "Витаминска салата", desc: "Марула, зелка, цвекло, домат, краставица, морков", price: 229, img: "https://imageproxy.wolt.com/assets/67a2262a3a026e62a6225825" },
+      { name: "Криспи салата", desc: "Ајсберг, рукола, црвена зелка, јајце, пилешко, шери, корнфлекс, дресинг", price: 349, img: "https://imageproxy.wolt.com/assets/67a21fb03a026e62a62256fb" },
+      { name: "Цезар салата", desc: "Марула, пилешко месо, кубети, пармезан, дресинг", price: 339, img: "https://imageproxy.wolt.com/assets/67a21d863cbcbb5116a3e714" },
+      { name: "Туна салата", desc: "Марула, кромид, домат, туна, пченка, крутони", price: 299, img: "https://imageproxy.wolt.com/assets/67a223cb178054629979f3cd" },
+      { name: "Капрезе салата", desc: "Домат, моцарела, босилок", price: 329, img: "https://imageproxy.wolt.com/assets/67a2246c3a026e62a62257c8" },
+      { name: "Бифтек салата", desc: "Бифтек, рукола, марула, шери домат, пармезан", price: 539, img: "https://imageproxy.wolt.com/assets/67876d01596da842cc6382a1" },
+      { name: "Таратор", desc: "Кисело млеко, краставица, лук, ореви, маслинка", price: 179, img: "https://imageproxy.wolt.com/assets/67e3dfc7df096032fc2e4020" },
+    ],
+  },
+  {
+    id: "testenini",
+    name: "ТЕСТЕНИНИ",
+    items: [
+      { name: "Болоњезе паста", desc: "Болоњезе сос, пармезан", price: 339, img: "https://imageproxy.wolt.com/assets/67a21dc33a026e62a622567f" },
+      { name: "Фунги паста", desc: "Шампињони, шунка, слатка павлака, пармезан", price: 339, img: "https://imageproxy.wolt.com/assets/67a218843cbcbb5116a3e670" },
+      { name: "Пармезан паста", desc: "Шампињони, говедски пршут, хопла, пармезан", price: 389, img: "https://imageproxy.wolt.com/assets/67a2189f3a026e62a62255ed" },
+      { name: "Кватро формаџи паста", desc: "Слатка павлака, моцарела, рокфорд, пармезан", price: 389, img: "https://imageproxy.wolt.com/assets/67a218a63a026e62a62255ee" },
+      { name: "Примавера паста", desc: "Доматен сос, моцарела, лук, босилок, магдонос", price: 329, img: "https://imageproxy.wolt.com/assets/67a223343a026e62a622579c" },
+      { name: "Потпечени макарони во фурна", desc: "макарони, сирење, јајце, кашкавал", price: 279, img: "https://imageproxy.wolt.com/assets/67e3dfb1df096032fc2e401a" },
+    ],
+  },
+  {
+    id: "rizhoto",
+    name: "РИЖОТО",
+    items: [
+      { name: "Рижото со зеленчук", desc: "Ориз, морков, шампињони, тиквици, грашок", price: 299, img: "https://imageproxy.wolt.com/assets/67a225ca3a026e62a622581a" },
+      { name: "Рижото фунги", desc: "Ориз, шампињони, пршут, пармезан", price: 369, img: "https://imageproxy.wolt.com/assets/67a223f4178054629979f3d1" },
+      { name: "Џамбалаја со кари", desc: "Ориз, пилешко месо, морков, тиквици, шампињони, грашок, кари, соја сос", price: 369, img: "https://imageproxy.wolt.com/assets/67a227d93cbcbb5116a3e90d" },
+      { name: "Џамбалаја", desc: "Ориз, пилешко месо, морков, тиквици, шампињони, грашок, соја сос", price: 369, img: "https://imageproxy.wolt.com/assets/690b1b162b664a8501f058f4" },
+    ],
+  },
+  {
+    id: "daski",
+    name: "ДАСКИ",
+    items: [
+      { name: "Похована даска за 2 особи", desc: "Пилешки прсти, пирошки, поховани зденки, крокети, похован кашкавал, похован кромид, сосови", price: 849, img: "https://imageproxy.wolt.com/assets/67a217a83cbcbb5116a3e655" },
+      { name: "Похована даска за 4 особи", desc: "Пилешки прсти, пирошки, поховани зденки, крокети, похован кашкавал, похован кромид, сосови", price: 1449, img: "https://imageproxy.wolt.com/assets/67a217a83cbcbb5116a3e655" },
+      { name: "Даска Дион за 2 особи", desc: "Свински и говедски пршут, лепчиња со кајмак, пармезан, овчо сирење, шампињони на путер, рокфорд, кашкавал", price: 869, img: "https://imageproxy.wolt.com/assets/67a21d783cbcbb5116a3e712" },
+      { name: "Даска Дион за 4 особи", desc: "Свински и говедски пршут, лепчиња со кајмак, пармезан, овчо сирење, шампињони на путер, рокфорд, кашкавал", price: 1599, img: "https://imageproxy.wolt.com/assets/67a21d783cbcbb5116a3e712" },
+      { name: "Национална даска", desc: "Поховани тиквици, похован модар домат, тиквици со павлака, овчо сирфење, гарлик бред, полнети поховани пиперки", price: 1299, img: "https://imageproxy.wolt.com/assets/67a225e9178054629979f41e" },
+    ],
+  },
+  {
+    id: "meze",
+    name: "МЕЗЕ",
+    items: [
+      { name: "Тиквици со павлака", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67a22568178054629979f40a" },
+      { name: "Крцкави тиквици", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67a23093178054629979f5ac" },
+      { name: "Шампињони на путер", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67a220473cbcbb5116a3e780" },
+      { name: "Зеленчук на скара", desc: "", price: 219, img: "https://imageproxy.wolt.com/assets/67a227cb178054629979f45e" },
+      { name: "Помфрит", desc: "", price: 169, img: "https://imageproxy.wolt.com/assets/67a22615178054629979f425" },
+      { name: "Помфрит со сирење", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67a2204f3cbcbb5116a3e782" },
+      { name: "Пилешки прсти", desc: "", price: 359, img: "https://imageproxy.wolt.com/assets/67a227fe3a026e62a6225861" },
+      { name: "Пилешки прсти со помфрит", desc: "", price: 399, img: "https://imageproxy.wolt.com/assets/67a225d5178054629979f41a" },
+      { name: "Фокача", desc: "Фокача лепче со лук, маслинки и моцарела", price: 229, img: "https://imageproxy.wolt.com/assets/67a219373a026e62a6225608" },
+      { name: "Гарлик бред", desc: "", price: 229, img: "https://imageproxy.wolt.com/assets/67a21f2a3cbcbb5116a3e756" },
+      { name: "Ајвар", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67e3dcedd025c6733684b05b" },
+      { name: "Пинџур", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67e3df44149a6079e5cf224b" },
+      { name: "Макало", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67e40f50cc3d4de7530570bc" },
+      { name: "Пиперка во павлака", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67e3da1fdf096032fc2e3ec6" },
+      { name: "Цепкани пиперки 150gr", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67e40f7ccc3d4de7530570c7" },
+      { name: "Чварки 100gr", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67e40fc1ee6cc508f063034f" },
+      { name: "Овчо сирење", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67a2249b3cbcbb5116a3e858" },
+      { name: "Похован кашкавал", desc: "", price: 189, img: "https://imageproxy.wolt.com/assets/67a2205a3cbcbb5116a3e783" },
+      { name: "Поховани зденки", desc: "", price: 199, img: "https://imageproxy.wolt.com/assets/67a220783cbcbb5116a3e7bb" },
+      { name: "Пармезан", desc: "", price: 329, img: "https://imageproxy.wolt.com/assets/67a228133a026e62a6225865" },
+      { name: "Рокфорд", desc: "", price: 299, img: "https://imageproxy.wolt.com/assets/67a22810178054629979f466" },
+      { name: "Моцарела", desc: "", price: 229, img: "https://imageproxy.wolt.com/assets/67a220813cbcbb5116a3e7be" },
+      { name: "Свински пршут", desc: "", price: 329, img: "https://imageproxy.wolt.com/assets/67a225af3a026e62a6225816" },
+      { name: "Говедски пршут", desc: "", price: 329, img: "https://imageproxy.wolt.com/assets/678777032546460362e12fa8" },
+      { name: "Лепчиња со кајмак", desc: "", price: 239, img: "https://imageproxy.wolt.com/assets/67a224a93a026e62a62257de" },
+      { name: "Лепчиња со кајмак и пршута", desc: "", price: 299, img: "https://imageproxy.wolt.com/assets/67a224ad3cbcbb5116a3e85e" },
+      { name: "Фурнаринки", desc: "", price: 119, img: "https://imageproxy.wolt.com/assets/678777272546460362e12fae" },
+      { name: "Фурнаринки со лук", desc: "", price: 129, img: "https://imageproxy.wolt.com/assets/6787772a2546460362e12fb1" },
+      { name: "Домашно лепче", desc: "", price: 59, img: "https://imageproxy.wolt.com/assets/67a228293a026e62a622586a" },
+      { name: "Чипс", desc: "Чипс од компири со сос од топен кашкавал", price: 289, img: "https://imageproxy.wolt.com/assets/67a21db93a026e62a622567e" },
+      { name: "Топено сирење со фурнарини", desc: "Сирење, кашкавал, домат, моцарела, зачини", price: 339, img: "https://imageproxy.wolt.com/assets/67a226363a026e62a6225828" },
+      { name: "Деликатес даска за 2 особи", desc: "говедски пршут, свински пршут, пармезан, апетисани, суви сливи, за 2 особи", price: 690, img: "https://imageproxy.wolt.com/assets/67e3df82df096032fc2e4013" },
+    ],
+  },
+  {
+    id: "burgeri-i-krispi",
+    name: "БУРГЕРИ И КРИСПИ",
+    items: [
+      { name: "Хамбургер", desc: "Лепче, плескавица, помфрит, марула, домат, сосови", price: 289, img: "https://imageproxy.wolt.com/assets/67a2247c3a026e62a62257ce" },
+      { name: "Чизбургер", desc: "Лепче, плескавица, кашкавал, помфрит, марула, домат, сосови", price: 319, img: "https://imageproxy.wolt.com/assets/67a21da53cbcbb5116a3e71a" },
+      { name: "Хамбургер Дион", desc: "Лепче, плескавица, похован кромид, помфрит, марула, домат, сосови", price: 329, img: "https://imageproxy.wolt.com/assets/67a2236a3cbcbb5116a3e818" },
+      { name: "Криспи бургер", desc: "Лепче, крцкав пилешки стек похован со корнфлекс, кисели краставички, помфрит, сосови", price: 319, img: "https://imageproxy.wolt.com/assets/690b1f99ff98801ac6a52a28" },
+      { name: "Чикен чедар бургер", desc: "Лепче, пилешки стек, чедар, помфрит, сосови, ајсберг", price: 289, img: "https://imageproxy.wolt.com/assets/690b1fe4a917603c057c5e20" },
+      { name: "Криспи прсти", desc: "Крцкави пилешки прсти, поховани со корнфлекс", price: 329, img: "https://imageproxy.wolt.com/assets/67a21b2b3a026e62a6225637" },
+    ],
+  },
+  {
+    id: "sendvichi",
+    name: "СЕНДВИЧИ",
+    items: [
+      { name: "Pulled Pork", desc: "бавно печено месо, лепче, помфрит, салати", price: 389, img: "https://imageproxy.wolt.com/assets/67e3df13149a6079e5cf223f" },
+      { name: "Сендвич фантазија", desc: "специјално италијанско лепче од фурна, пршут, рукола, песто, мајонез, шери домати, пармезан", price: 339, img: "https://imageproxy.wolt.com/assets/67e3df28149a6079e5cf2247" },
+      { name: "Италијански сендвич", desc: "Пршут, пармезан, рукола, маслинки, домат, намаз", price: 299, img: "https://imageproxy.wolt.com/assets/67a2200c178054629979f36e" },
+      { name: "Клуб сендвич", desc: "Лепче, шунка, кашкавал, марула, домат, помфрит, павлака", price: 279, img: "https://imageproxy.wolt.com/assets/67a21fea178054629979f366" },
+    ],
+  },
+  {
+    id: "skara",
+    name: "СКАРА",
+    items: [
+      { name: "Свинско ребро", desc: "Свинско ребро со помфрит", price: 369, img: "https://imageproxy.wolt.com/assets/67a22402178054629979f3d4" },
+      { name: "Увијач пилешки", desc: "Пилешко месо, кашкавал, сланина, помфрит", price: 359, img: "https://imageproxy.wolt.com/assets/67a2251e3cbcbb5116a3e87a" },
+      { name: "Увијач свински", desc: "Свинско месо, кашкавал, сланина, помфрит", price: 359, img: "https://imageproxy.wolt.com/assets/67a225233cbcbb5116a3e87b" },
+      { name: "Колбас", desc: "Колбас со помфрит", price: 279, img: "https://imageproxy.wolt.com/assets/67a21fb93a026e62a62256fd" },
+      { name: "Свинско филе", desc: "свинско филе со гарнир", price: 499, img: "https://imageproxy.wolt.com/assets/67e3ded7df096032fc2e3ff3" },
+      { name: "Вешалица", desc: "Бела вешалица на скара со помфрит", price: 349, img: "https://imageproxy.wolt.com/assets/67a21f4a3cbcbb5116a3e75b" },
+      { name: "Плескавица", desc: "Плескавица, помфрит", price: 299, img: "https://imageproxy.wolt.com/assets/67a21e1e3cbcbb5116a3e72f" },
+      { name: "Ражнич пилешки", desc: "Пилешки ражнич со помфрит", price: 329, img: "https://imageproxy.wolt.com/assets/67a22444178054629979f3e2" },
+      { name: "Ражнич свински", desc: "Свински ражнич со помфрит", price: 329, img: "https://imageproxy.wolt.com/assets/67a22440178054629979f3db" },
+      { name: "Ловечка плескавица", desc: "Плескавица полнета со кашкавал, печурки и сланина, помфрит", price: 339, img: "https://imageproxy.wolt.com/assets/67a225f7178054629979f421" },
+      { name: "Шарска плескавица", desc: "Плескавица со кашкавал, помфрит", price: 329, img: "https://imageproxy.wolt.com/assets/67a2279f3cbcbb5116a3e8f0" },
+      { name: "Шарска со кајмак", desc: "Плескавица со кашкавал, кајмак, помфрит", price: 389, img: "https://imageproxy.wolt.com/assets/67a219b83cbcbb5116a3e697" },
+      { name: "Ребро во фурна", desc: "свинско ребро во фурна на дрва со пекарски компир", price: 489, img: "https://imageproxy.wolt.com/assets/67e3dee8df096032fc2e3ff9" },
+      { name: "Мешана скара за 2 особи", desc: "Свежо свинско ребро, увијач, шарска плескавица, бела вешалица, ражнич, помфрит", price: 899, img: "https://imageproxy.wolt.com/assets/67a21fa53a026e62a62256fa" },
+      { name: "Мешана скара за 4 особи", desc: "Свежо свинско ребро, увијач, шарска плескавица, бела вешалица, ражнич, помфрит", price: 1599, img: "https://imageproxy.wolt.com/assets/67a21fa53a026e62a62256fa" },
+    ],
+  },
+  {
+    id: "pileshko",
+    name: "ПИЛЕШКО",
+    items: [
+      { name: "Пилешки стек", desc: "Свеж пилешки стек со гарнир", price: 319, img: "https://imageproxy.wolt.com/assets/67a218213cbcbb5116a3e666" },
+      { name: "Полнето пилешко", desc: "Пилешки стек, свински врат, печурки, кашкавал", price: 379, img: "https://imageproxy.wolt.com/assets/67a223bf178054629979f3ca" },
+      { name: "Пилешко со зеленчук", desc: "Пилешки стек, тиквици, морков, модар патлиџан, брокула, шампињони, пиперки", price: 369, img: "https://imageproxy.wolt.com/assets/67a218183cbcbb5116a3e665" },
+      { name: "Пилешко Quattro Formaggi", desc: "Пилешки стек, хопла, горгонзола, пармезан, моцарела, кашкавал, зеленчук", price: 389, img: "https://imageproxy.wolt.com/assets/67a217f53cbcbb5116a3e663" },
+      { name: "Пилешка круна", desc: "Пилешки стек, моцарела, говедски пршут, кари", price: 539, img: "https://imageproxy.wolt.com/assets/67a2182d178054629979f23c" },
+      { name: "Пилешко во кари", desc: "Пилешки стек, кари сос, слатка павлака", price: 359, img: "https://imageproxy.wolt.com/assets/67a217fb3cbcbb5116a3e664" },
+      { name: "Пилешко пармезан", desc: "Пилешко, шампињони, пармезан, слатка павлака", price: 359, img: "https://imageproxy.wolt.com/assets/67a217ec3cbcbb5116a3e662" },
+      { name: "Салтимбока", desc: "Пилешки стек во бел сос со говедска пршута", price: 359, img: "https://imageproxy.wolt.com/assets/67a21a11178054629979f276" },
+    ],
+  },
+  {
+    id: "teleshko",
+    name: "ТЕЛЕШКО",
+    items: [
+      { name: "Бифтек на скара", desc: "Бифтек на скара, мешано вариво", price: 1319, img: "https://imageproxy.wolt.com/assets/67a2259a3a026e62a6225811" },
+      { name: "Шкотски Бифтек", desc: "Бифтек, шкотски сос, вариво", price: 1469, img: "https://imageproxy.wolt.com/assets/67a2259e3cbcbb5116a3e899" },
+      { name: "Бифтек со зелен бибер", desc: "Бифтек, бибер, крем, коњак, вариво", price: 1399, img: "https://imageproxy.wolt.com/assets/67a21e2d178054629979f321" },
+      { name: "Бифтек со печурки", desc: "Бифтек, шампињони, вариво", price: 1429, img: "https://imageproxy.wolt.com/assets/67a21e32178054629979f322" },
+      { name: "Телешко со зеленчук", desc: "Телешко, печурки, тиквици, модар домат, морков, брокула, пиперка, чили, соја сос", price: 879, img: "https://imageproxy.wolt.com/assets/67a22584178054629979f40c" },
+      { name: "Бифтек теријаки", desc: "Бифтек пиперка, кромид, сусам, шери, соја", price: 989, img: "https://imageproxy.wolt.com/assets/67a223db3a026e62a62257b0" },
+      { name: "Талијата бифтек со зеленчук на скара", desc: "Телешко, зеленчук, чили, соја сос", price: 1209, img: "https://imageproxy.wolt.com/assets/67a2258e178054629979f40e" },
+      { name: "Телешки мускул во грне", desc: "Телешки мускул, сос од печурки", price: 649, img: "https://imageproxy.wolt.com/assets/67a227943cbcbb5116a3e8ee" },
+    ],
+  },
+  {
+    id: "pica-34cm",
+    name: "ПИЦА 34cm",
+    items: [
+      { name: "Маргарита", desc: "Пица тесто, кечап, кашкавал", price: 349, img: "https://imageproxy.wolt.com/assets/67e3dd54df096032fc2e3f92" },
+      { name: "Пеперончино", desc: "Пица тесто, кечап, кашкавал, кулен", price: 419, img: "https://imageproxy.wolt.com/assets/67e3dda3d025c6733684b0a3" },
+      { name: "Туна пица", desc: "Пица тесто, кечап, кашкавал, туна, кромид, маслинки", price: 419, img: "https://imageproxy.wolt.com/assets/67e3dea9df096032fc2e3fe9" },
+      { name: "Капричиоза", desc: "Пица тесто, кечап, кашкавал, шунка, печурки", price: 399, img: "https://imageproxy.wolt.com/assets/67e3dd1bd025c6733684b065" },
+      { name: "Рустика", desc: "Пица тесто, кечап, кашкавал, врат, сирење, јајце", price: 419, img: "https://imageproxy.wolt.com/assets/67e3de99df096032fc2e3fe5" },
+      { name: "Пица со пршут", desc: "Пица тесто, кечап, кашкавал, говедски пршут, лук", price: 439, img: "https://imageproxy.wolt.com/assets/67e3dd8ed025c6733684b0a1" },
+      { name: "Пица Дион", desc: "Кечап, кашкавал, кулен, сланина,свински врат, говедски пршут, павлака, маслинки", price: 529, img: "https://imageproxy.wolt.com/assets/67e3dd77df096032fc2e3fb7" },
+      { name: "Кватро Формаџи", desc: "Пица тесто, кечап, кашкавал,моцарела, рокфорд, пармезан", price: 449, img: "https://imageproxy.wolt.com/assets/67e3dd33d025c6733684b067" },
+      { name: "Вегетеријана", desc: "Пица тесто, кечап, кашкавал, печурки, маслинки, пиперки, домат, кромид", price: 369, img: "https://imageproxy.wolt.com/assets/67e3de70149a6079e5cf2212" },
+      { name: "Бејкон", desc: "Пица тесто, кечап, кашкавал, сланина", price: 439, img: "https://imageproxy.wolt.com/assets/67e3de56149a6079e5cf220b" },
+      { name: "Италијана", desc: "Пица тесто, кечап, моцарела, шери домати, босилек", price: 419, img: "https://imageproxy.wolt.com/assets/67e3de87149a6079e5cf221b" },
+    ],
+  },
+  {
+    id: "tradicionalna-hrana",
+    name: "ТРАДИЦИОНАЛНА ХРАНА",
+    items: [
+      { name: "Селско месо", desc: "Свинско месо, мелено месо, пилешко месо, печурки, кашкавал", price: 479, img: "https://imageproxy.wolt.com/assets/67a219e83a026e62a6225617" },
+      { name: "Тава Дион", desc: "Телешко, свинско и пилешко месо, печурки, кашкавал, сос", price: 519, img: "https://imageproxy.wolt.com/assets/67a2252d178054629979f3fb" },
+      { name: "Тавче гравче", desc: "традиционално тавче гравче", price: 239, img: "https://imageproxy.wolt.com/assets/67e3dde5df096032fc2e3fc6" },
+      { name: "Пастрмајлија свинска", desc: "Свинско месо, јајце", price: 359, img: "https://imageproxy.wolt.com/assets/67a2278d3cbcbb5116a3e8eb" },
+      { name: "Пастрмајлија пилешка", desc: "Пилешко месо, јајце", price: 359, img: "https://imageproxy.wolt.com/assets/67a22789178054629979f455" },
+    ],
+  },
+  {
+    id: "vafli",
+    name: "ВАФЛИ",
+    items: [
+      { name: "Нутела вафла", desc: "", price: 269, img: "https://imageproxy.wolt.com/assets/67a225713a026e62a622580e" },
+      { name: "Вафла со ванила и јагода", desc: "", price: 259, img: "https://imageproxy.wolt.com/assets/67a224dc3a026e62a62257f1" },
+      { name: "M&M вафла", desc: "", price: 299, img: "https://imageproxy.wolt.com/assets/67a21f693cbcbb5116a3e75d" },
+      { name: "Вафла киндер буено со топена плазма", desc: "", price: 299, img: "https://imageproxy.wolt.com/assets/67a21f633cbcbb5116a3e75c" },
+    ],
+  },
+  {
+    id: "deserti",
+    name: "ДЕСЕРТИ",
+    items: [
+      { name: "Топло ладно", desc: "", price: 259, img: "https://imageproxy.wolt.com/assets/67a2244c178054629979f3e6" },
+      { name: "Чиз Кејк", desc: "", price: 269, img: "https://imageproxy.wolt.com/assets/67a21d903cbcbb5116a3e718" },
+      { name: "Нутела палачинки", desc: "", price: 249, img: "https://imageproxy.wolt.com/assets/67a225df178054629979f41c" },
+      { name: "M&M палачинки", desc: "", price: 269, img: "https://imageproxy.wolt.com/assets/67e3de3a149a6079e5cf2207" },
+      { name: "Палачинка киндер буено со топена плазма", desc: "", price: 269, img: "https://imageproxy.wolt.com/assets/67a21fff178054629979f369" },
+      { name: "Трилече", desc: "", price: 179, img: "https://imageproxy.wolt.com/assets/67e3de0d149a6079e5cf2202" },
+    ],
+  },
+];
+
+export const getCategory = (id: string) => MENU.find((c) => c.id === id);
