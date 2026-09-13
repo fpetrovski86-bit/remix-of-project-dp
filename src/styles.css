@@ -34,7 +34,7 @@
   --color-ink-foreground: var(--ink-foreground);
   --color-gold: var(--gold);
   --font-display: "Playfair Display", "Georgia", serif;
-  --font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Playfair Display", "Georgia", serif;
 }
 
 :root {
@@ -80,7 +80,7 @@
   h3 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     text-transform: uppercase;
   }
 }
@@ -107,7 +107,7 @@
 
 @utility eyebrow {
   font-size: 0.75rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--color-primary);
 }
@@ -127,7 +127,7 @@
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   text-transform: uppercase;
   padding: 0.85rem 1.75rem;
   transition: all 0.2s ease;

@@ -6,10 +6,12 @@ import { CATEGORY_IDS, EVENTS } from "@/lib/data";
 function Dropdown({
   label,
   solid,
+  wide = false,
   children,
 }: {
   label: string;
   solid: boolean;
+  wide?: boolean;
   children: (close: () => void) => React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -24,20 +26,26 @@ function Dropdown({
   }, []);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className={wide ? "static" : "relative"} ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className={`flex items-center gap-2 font-display text-xl font-semibold uppercase tracking-[0.12em] transition-colors hover:text-primary ${
+        className={`flex items-center gap-2 font-display text-lg font-semibold uppercase transition-colors hover:text-primary ${
           solid ? "text-foreground" : "text-ink-foreground"
         }`}
       >
         {label}
-        <span className={`text-[0.6rem] transition-transform ${open ? "rotate-180" : ""}`}>▼</span>
+        <span className={`text-[0.6rem] transition-transform ${open ? "rotate-180" : ""}`}>⌃</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-4 max-h-[70vh] w-64 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]">
+        <div
+          className={
+            wide
+              ? "absolute inset-x-0 top-full z-50 max-h-[70vh] overflow-y-auto border-y border-border bg-popover shadow-[var(--shadow-warm)]"
+              : "absolute left-0 top-full z-50 mt-4 max-h-[70vh] w-72 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]"
+          }
+        >
           {children(() => setOpen(false))}
         </div>
       )}
@@ -54,7 +62,7 @@ export function TopBar() {
   const itemCls =
     "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
-  const linkCls = `font-display text-xl font-semibold uppercase tracking-[0.12em] transition-colors hover:text-primary ${
+  const linkCls = `font-display text-lg font-semibold uppercase transition-colors hover:text-primary ${
     solid ? "text-foreground" : "text-ink-foreground"
   }`;
 
@@ -64,7 +72,7 @@ export function TopBar() {
         <div className="flex items-center gap-8">
           <Link
             to="/"
-            className={`font-display text-3xl font-bold uppercase tracking-[0.12em] transition-colors ${
+            className={`font-display text-3xl font-bold uppercase transition-colors ${
               solid ? "text-foreground" : "text-ink-foreground"
             }`}
           >
@@ -72,20 +80,26 @@ export function TopBar() {
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">
-            <Dropdown label={t("menuTitle")} solid={solid}>
-              {(close) =>
-                CATEGORY_IDS.map((id) => (
-                  <Link
-                    key={id}
-                    to="/kategorija/$id"
-                    params={{ id }}
-                    onClick={close}
-                    className={itemCls}
-                  >
-                    {t("category")} {id}
-                  </Link>
-                ))
-              }
+             <Dropdown label={t("menuTitle")} solid={solid} wide>
+               {(close) => (
+                 <div className="mx-auto grid max-w-7xl grid-cols-2 px-5 py-7 sm:grid-cols-3 lg:grid-cols-4">
+                   {CATEGORY_IDS.map((id, index) => (
+                     <Link
+                       key={id}
+                       to="/kategorija/$id"
+                       params={{ id }}
+                       onClick={close}
+                       className={`flex min-h-14 items-center border-b border-border px-5 py-3 font-display text-base font-semibold uppercase text-foreground transition-colors hover:bg-secondary hover:text-primary sm:text-lg ${
+                         index % 2 !== 0 ? "border-l" : ""
+                       } ${index % 3 !== 0 ? "sm:border-l" : "sm:border-l-0"} ${
+                         index % 4 !== 0 ? "lg:border-l" : "lg:border-l-0"
+                       }`}
+                     >
+                       {t("category")} {id}
+                     </Link>
+                   ))}
+                 </div>
+               )}
             </Dropdown>
 
             <Dropdown label={t("schedule")} solid={solid}>
