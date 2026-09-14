@@ -34,10 +34,10 @@ type Line = { name: string; price: number; img: string; qty: number };
 function OrdersPage() {
   const { t } = useLang();
   const [done, setDone] = useState(false);
-  const [catId, setCatId] = useState(MENU[0].id);
+  const [catId, setCatId] = useState(MENU[0]!.id);
   const [lines, setLines] = useState<Line[]>([]);
 
-  const category = useMemo(() => MENU.find((c) => c.id === catId) ?? MENU[0], [catId]);
+  const category = useMemo(() => MENU.find((c) => c.id === catId) ?? MENU[0]!, [catId]);
   const total = lines.reduce((s, l) => s + l.price * l.qty, 0);
 
   const addItem = (name: string, price: number, img: string) => {
@@ -45,7 +45,7 @@ function OrdersPage() {
       const i = prev.findIndex((l) => l.name === name);
       if (i === -1) return [...prev, { name, price, img, qty: 1 }];
       const next = [...prev];
-      next[i] = { ...next[i], qty: next[i].qty + 1 };
+      next[i] = { ...next[i]!, qty: next[i]!.qty + 1 };
       return next;
     });
   };
@@ -177,7 +177,7 @@ function OrdersPage() {
           </div>
 
           <label className="block text-sm">
-            <span className="text-muted-foreground">{t("note")}</span>
+            <span className="text-muted-foreground">{t("orderNote")}</span>
             <textarea rows={3} className="mt-1 w-full border border-input bg-background p-3" />
           </label>
 
