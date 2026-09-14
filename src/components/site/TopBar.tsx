@@ -62,14 +62,22 @@ export function TopBar() {
 
   useEffect(() => {
     const updateOpenStatus = () => {
+      const now = new Date();
+      const day = new Intl.DateTimeFormat("en-GB", {
+        weekday: "short",
+        timeZone: "Europe/Skopje",
+      }).format(now);
       const hour = Number(
         new Intl.DateTimeFormat("en-GB", {
           hour: "2-digit",
           hour12: false,
           timeZone: "Europe/Skopje",
-        }).format(new Date()),
+        }).format(now),
       );
-      setIsOpen(hour >= 9 && hour < 23);
+
+      const isWeekend = day === "Fri" || day === "Sat";
+      const open = isWeekend ? hour >= 9 || hour < 1 : hour >= 9 && hour < 24;
+      setIsOpen(open);
     };
 
     updateOpenStatus();
@@ -160,7 +168,7 @@ export function TopBar() {
             }`}
           >
             <span
-              className={`h-2 w-2 rounded-full ${isOpen ? "bg-primary" : "bg-destructive"}`}
+              className={`h-2 w-2 rounded-full ${isOpen ? "bg-open" : "bg-closed"}`}
               aria-hidden
             />
             {isOpen ? t("open") : t("closed")}
