@@ -33,6 +33,8 @@
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
   --color-gold: var(--gold);
+  --color-open: var(--open);
+  --color-closed: var(--closed);
   --font-display: "Playfair Display", "Georgia", serif;
   --font-sans: "Playfair Display", "Georgia", serif;
 }
