@@ -168,7 +168,7 @@ export function TopBar() {
             }`}
           >
             <span
-              className={`h-2 w-2 rounded-full ${isOpen ? "bg-primary" : "bg-destructive"}`}
+              className={`h-2 w-2 rounded-full ${isOpen ? "bg-open" : "bg-closed"}`}
               aria-hidden
             />
             {isOpen ? t("open") : t("closed")}

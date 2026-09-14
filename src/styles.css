@@ -63,6 +63,8 @@
   --ink: oklch(0.24 0.012 265);
   --ink-foreground: oklch(0.98 0 0);
   --gold: oklch(0.74 0.09 65);
+  --open: oklch(0.65 0.22 145);
+  --closed: oklch(0.55 0.21 27);
   --shadow-warm: 0 12px 30px -22px oklch(0.2 0.02 260 / 0.4);
 }
 
