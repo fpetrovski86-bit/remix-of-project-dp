@@ -21,6 +21,8 @@ import dion18 from "@/assets/dion/dion-18.jpg.asset.json";
 import dion19 from "@/assets/dion/dion-19.jpg.asset.json";
 
 const HERO_IMAGES = [dion1.url, dion2.url, dion3.url];
+// Третата слика гледа премногу во таванот — прикажи подолу дел од неа.
+const HERO_POSITIONS = ["", "", "object-[center_75%]"];
 const GALLERY_ASPECTS = [
   "aspect-[3/4]",
   "aspect-square",
@@ -92,7 +94,7 @@ function Hero() {
           height={1088}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
             i === idx ? "opacity-100" : "opacity-0"
-          }`}
+          } ${HERO_POSITIONS[i] ?? ""}`}
         />
       ))}
       <div className="absolute inset-0 bg-ink/65" />

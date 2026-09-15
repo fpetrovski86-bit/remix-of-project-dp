@@ -48,10 +48,10 @@ export function SiteFooter() {
         <div>
           <h3 className="font-display text-2xl text-gold">{t("followUs")}</h3>
           <div className="mt-4 flex flex-col gap-2 text-sm opacity-80">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-gold">
+            <a href="https://www.instagram.com/restaurantdion/" target="_blank" rel="noreferrer" className="hover:text-gold">
               Instagram
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-gold">
+            <a href="https://www.facebook.com/restaurant.dion/?locale=mk_MK" target="_blank" rel="noreferrer" className="hover:text-gold">
               Facebook
             </a>
           </div>
