@@ -94,7 +94,7 @@ function Hero() {
           height={1088}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
             i === idx ? "opacity-100" : "opacity-0"
-          }`}
+          } ${HERO_POSITIONS[i] ?? ""}`}
         />
       ))}
       <div className="absolute inset-0 bg-ink/65" />
