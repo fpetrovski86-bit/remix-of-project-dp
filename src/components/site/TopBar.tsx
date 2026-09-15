@@ -40,17 +40,21 @@ function Dropdown({
         <span className={`text-[0.6rem] transition-transform ${open ? "rotate-180" : ""}`}>⌃</span>
       </button>
 
-      {open && (
-        <div
-          className={
-            wide
-              ? "absolute inset-x-0 top-full z-50 max-h-[70vh] overflow-y-auto border-y border-border bg-popover shadow-[var(--shadow-warm)]"
-              : "absolute left-0 top-full z-50 mt-4 max-h-[70vh] w-72 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]"
-          }
-        >
-          {children(() => setOpen(false))}
-        </div>
-      )}
+      <div
+        aria-hidden={!open}
+        inert={!open}
+        className={`${
+          wide
+            ? "absolute inset-x-0 top-full z-50 max-h-[70vh] overflow-y-auto border-y border-border bg-popover shadow-[var(--shadow-warm)]"
+            : "absolute left-0 top-full z-50 mt-4 max-h-[70vh] w-72 overflow-y-auto border border-border bg-popover shadow-[var(--shadow-warm)]"
+        } origin-top transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none ${
+          open
+            ? "visible translate-y-0 scale-y-100 opacity-100"
+            : "invisible -translate-y-2 scale-y-95 opacity-0"
+        }`}
+      >
+        {children(() => setOpen(false))}
+      </div>
     </div>
   );
 }
