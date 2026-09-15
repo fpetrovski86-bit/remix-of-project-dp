@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dishImg from "@/assets/dish.jpg";
 import { useLang } from "@/lib/i18n";
 import type { MenuItem } from "@/lib/menu-data";
@@ -6,6 +6,7 @@ import type { MenuItem } from "@/lib/menu-data";
 export function DishCard({ item }: { item?: MenuItem }) {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const name = item?.name ?? t("dishName");
   const price = item ? `${item.price} ден` : t("price");
@@ -15,12 +16,27 @@ export function DishCard({ item }: { item?: MenuItem }) {
     .map((s) => s.trim())
     .filter(Boolean);
 
+  useEffect(() => {
+    if (!open) return;
+    const frame = window.requestAnimationFrame(() => setVisible(true));
+    return () => window.cancelAnimationFrame(frame);
+  }, [open]);
+
+  const showPopup = () => {
+    setOpen(true);
+  };
+
+  const hidePopup = () => {
+    setVisible(false);
+    window.setTimeout(() => setOpen(false), 300);
+  };
+
   return (
     <article className="group text-center">
       <button
         type="button"
         className="block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-        onClick={() => setOpen(true)}
+        onClick={showPopup}
         aria-label={`${t("content")}: ${name}`}
       >
         <span className="block aspect-[3/2] overflow-hidden bg-secondary">
@@ -39,15 +55,22 @@ export function DishCard({ item }: { item?: MenuItem }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-4"
-          onClick={() => setOpen(false)}
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-4 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+            visible ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={hidePopup}
         >
-          <div className="card-warm w-full max-w-md p-6" onClick={(e) => e.stopPropagation()}>
+          <div
+            className={`card-warm w-full max-w-md transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none p-6 ${
+              visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-95 opacity-0"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-start justify-between gap-4">
               <h3 className="text-left font-display text-2xl">{name}</h3>
               <button
                 aria-label={t("close")}
-                onClick={() => setOpen(false)}
+                onClick={hidePopup}
                 className="rounded-full border border-border px-3 py-1 text-sm text-muted-foreground hover:bg-secondary"
               >
                 ✕
@@ -66,7 +89,7 @@ export function DishCard({ item }: { item?: MenuItem }) {
               )}
               <div className="border-t border-border pt-4 font-semibold text-primary">{price}</div>
             </div>
-            <button className="btn-base btn-solid mt-6 w-full" onClick={() => setOpen(false)}>
+            <button className="btn-base btn-solid mt-6 w-full" onClick={hidePopup}>
               {t("close")}
             </button>
           </div>
