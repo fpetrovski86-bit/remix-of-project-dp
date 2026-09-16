@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { EVENTS } from "@/lib/data";
 import { MENU } from "@/lib/menu-data";
+import { menuText } from "@/lib/menu-i18n";
 import dionLogo from "@/assets/dion-logo.png";
 
 function Dropdown({
@@ -130,7 +131,7 @@ export function TopBar() {
                          index % 4 !== 0 ? "lg:border-l" : "lg:border-l-0"
                        }`}
                      >
-                       {cat.name}
+                       {menuText(cat.name, lang)}
                      </Link>
                    ))}
                  </div>

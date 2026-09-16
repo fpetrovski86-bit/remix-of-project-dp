@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useLang } from "@/lib/i18n";
 import { MENU } from "@/lib/menu-data";
+import { menuText } from "@/lib/menu-i18n";
 
 export const Route = createFileRoute("/meni")({
   head: () => ({
@@ -41,7 +42,7 @@ function MenuPage() {
               <div className="aspect-[9/6] overflow-hidden">
                 <img
                   src={cat.items[0]?.img}
-                  alt={cat.name}
+                  alt={menuText(cat.name, lang)}
                   loading="lazy"
                   width={900}
                   height={700}
@@ -49,7 +50,7 @@ function MenuPage() {
                 />
               </div>
               <div className="flex items-center justify-between gap-3 p-5">
-                <h2 className="font-display text-xl uppercase">{cat.name}</h2>
+                <h2 className="font-display text-xl uppercase">{menuText(cat.name, lang)}</h2>
                 <Link
                   to="/kategorija/$id"
                   params={{ id: cat.id }}

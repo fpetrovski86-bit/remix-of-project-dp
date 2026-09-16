@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import dishImg from "@/assets/dish.jpg";
 import { useLang } from "@/lib/i18n";
 import type { MenuItem } from "@/lib/menu-data";
+import { menuPrice, menuText } from "@/lib/menu-i18n";
 
 export function DishCard({ item }: { item?: MenuItem }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  const name = item?.name ?? t("dishName");
-  const price = item ? `${item.price} ден` : t("price");
+  const name = item ? menuText(item.name, lang) : t("dishName");
+  const price = item ? menuPrice(item.price, lang) : t("price");
   const img = item?.img ?? dishImg;
-  const parts = (item?.desc ?? "")
+  const parts = menuText(item?.desc ?? "", lang)
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
