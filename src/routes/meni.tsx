@@ -21,7 +21,7 @@ export const Route = createFileRoute("/meni")({
 });
 
 function MenuPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   return (
     <main className="section-pad px-5 pt-32">

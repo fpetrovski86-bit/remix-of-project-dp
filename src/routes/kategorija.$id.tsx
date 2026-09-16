@@ -26,7 +26,7 @@ export const Route = createFileRoute("/kategorija/$id")({
 
 function CategoryPage() {
   const { id } = Route.useParams();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const cat = getCategory(id);
 
   return (

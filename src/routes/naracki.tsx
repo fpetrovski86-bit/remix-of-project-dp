@@ -33,7 +33,7 @@ function Field({ label, type }: { label: string; type: string }) {
 type Line = { name: string; price: number; img: string; qty: number };
 
 function OrdersPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [done, setDone] = useState(false);
   const [catId, setCatId] = useState(MENU[0]!.id);
   const [lines, setLines] = useState<Line[]>([]);
