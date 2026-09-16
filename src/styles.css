@@ -269,3 +269,7 @@
     transform: translateY(0);
   }
 }
+
+#specijaliteti {
+  scroll-margin-top: 6rem;
+}
