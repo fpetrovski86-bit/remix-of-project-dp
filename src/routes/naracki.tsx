@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, type FormEvent } from "react";
 import { useLang } from "@/lib/i18n";
 import { MENU } from "@/lib/menu-data";
+import { menuText, menuPrice } from "@/lib/menu-i18n";
 
 export const Route = createFileRoute("/naracki")({
   head: () => ({
@@ -32,7 +33,7 @@ function Field({ label, type }: { label: string; type: string }) {
 type Line = { name: string; price: number; img: string; qty: number };
 
 function OrdersPage() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [done, setDone] = useState(false);
   const [catId, setCatId] = useState(MENU[0]!.id);
   const [lines, setLines] = useState<Line[]>([]);
@@ -96,7 +97,7 @@ function OrdersPage() {
               >
                 {MENU.map((c) => (
                   <option key={c.id} value={c.id}>
-                    {c.name}
+                    {menuText(c.name, lang)}
                   </option>
                 ))}
               </select>
@@ -110,13 +111,13 @@ function OrdersPage() {
                 >
                   <img
                     src={item.img}
-                    alt={item.name}
+                    alt={menuText(item.name, lang)}
                     loading="lazy"
                     className="h-14 w-14 shrink-0 object-cover"
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold">{item.name}</p>
-                    <p className="text-xs text-muted-foreground">{item.price} ден</p>
+                    <p className="truncate text-sm font-semibold">{menuText(item.name, lang)}</p>
+                    <p className="text-xs text-muted-foreground">{menuPrice(item.price, lang)}</p>
                   </div>
                   <button
                     type="button"
@@ -142,7 +143,7 @@ function OrdersPage() {
                     key={l.name}
                     className="flex items-center gap-3 border border-border bg-secondary/50 p-2"
                   >
-                    <span className="min-w-0 flex-1 truncate text-sm">{l.name}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm">{menuText(l.name, lang)}</span>
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
@@ -163,7 +164,7 @@ function OrdersPage() {
                       </button>
                     </div>
                     <span className="w-20 text-right text-sm text-muted-foreground">
-                      {l.price * l.qty} ден
+                      {menuPrice(l.price * l.qty, lang)}
                     </span>
                   </li>
                 ))}
@@ -171,7 +172,7 @@ function OrdersPage() {
             )}
             {lines.length > 0 && (
               <p className="mt-3 text-right font-display text-lg uppercase">
-                {t("total")}: <span className="text-primary">{total} ден</span>
+                {t("total")}: <span className="text-primary">{menuPrice(total, lang)}</span>
               </p>
             )}
           </div>

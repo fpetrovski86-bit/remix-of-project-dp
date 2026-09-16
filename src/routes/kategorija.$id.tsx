@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { DishCard } from "@/components/site/DishCard";
 import { useLang } from "@/lib/i18n";
 import { getCategory } from "@/lib/menu-data";
+import { menuText } from "@/lib/menu-i18n";
 
 export const Route = createFileRoute("/kategorija/$id")({
   head: () => ({
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/kategorija/$id")({
 
 function CategoryPage() {
   const { id } = Route.useParams();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const cat = getCategory(id);
 
   return (
@@ -38,7 +39,7 @@ function CategoryPage() {
         <div className="mx-auto mt-10 max-w-2xl text-center">
           <p className="eyebrow">{t("menuTitle")}</p>
           <h1 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
-            {cat ? cat.name : t("category")}
+            {cat ? menuText(cat.name, lang) : t("category")}
           </h1>
           <p className="mt-4 text-muted-foreground">{t("categoryDishes")}</p>
         </div>
