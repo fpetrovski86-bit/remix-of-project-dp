@@ -14,6 +14,7 @@ import { Route as MeniRouteImport } from './routes/meni'
 import { Route as NarackiRouteImport } from './routes/naracki'
 import { Route as RezervaciiRouteImport } from './routes/rezervacii'
 import { Route as KategorijaIdRouteImport } from './routes/kategorija.$id'
+import { Route as RasporedIndexRouteImport } from './routes/raspored.index'
 import { Route as RasporedIdRouteImport } from './routes/raspored.$id'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const KategorijaIdRoute = KategorijaIdRouteImport.update({
   path: '/kategorija/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RasporedIndexRoute = RasporedIndexRouteImport.update({
+  id: '/raspored/',
+  path: '/raspored/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RasporedIdRoute = RasporedIdRouteImport.update({
   id: '/raspored/$id',
   path: '/raspored/$id',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/rezervacii': typeof RezervaciiRoute
   '/kategorija/$id': typeof KategorijaIdRoute
   '/raspored/$id': typeof RasporedIdRoute
+  '/raspored/': typeof RasporedIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/rezervacii': typeof RezervaciiRoute
   '/kategorija/$id': typeof KategorijaIdRoute
   '/raspored/$id': typeof RasporedIdRoute
+  '/raspored': typeof RasporedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/rezervacii': typeof RezervaciiRoute
   '/kategorija/$id': typeof KategorijaIdRoute
   '/raspored/$id': typeof RasporedIdRoute
+  '/raspored/': typeof RasporedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/rezervacii'
     | '/kategorija/$id'
     | '/raspored/$id'
+    | '/raspored/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/rezervacii'
     | '/kategorija/$id'
     | '/raspored/$id'
+    | '/raspored'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/rezervacii'
     | '/kategorija/$id'
     | '/raspored/$id'
+    | '/raspored/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   RezervaciiRoute: typeof RezervaciiRoute
   KategorijaIdRoute: typeof KategorijaIdRoute
   RasporedIdRoute: typeof RasporedIdRoute
+  RasporedIndexRoute: typeof RasporedIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KategorijaIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/raspored/': {
+      id: '/raspored/'
+      path: '/raspored'
+      fullPath: '/raspored/'
+      preLoaderRoute: typeof RasporedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/raspored/$id': {
       id: '/raspored/$id'
       path: '/raspored/$id'
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   RezervaciiRoute: RezervaciiRoute,
   KategorijaIdRoute: KategorijaIdRoute,
   RasporedIdRoute: RasporedIdRoute,
+  RasporedIndexRoute: RasporedIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
