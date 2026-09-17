@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { EVENTS } from "@/lib/data";
 import { MENU } from "@/lib/menu-data";
 import { menuText } from "@/lib/menu-i18n";
 import dionLogo from "@/assets/dion-logo.png";
