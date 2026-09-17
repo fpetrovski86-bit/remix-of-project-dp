@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { useLang } from "@/lib/i18n";
+import { sendToFormspree } from "@/lib/formspree";
 
 export const Route = createFileRoute("/rezervacii")({
   head: () => ({
@@ -19,21 +20,33 @@ export const Route = createFileRoute("/rezervacii")({
   component: ReservationsPage,
 });
 
-function Field({ label, type }: { label: string; type: string }) {
+function Field({ label, type, name }: { label: string; type: string; name: string }) {
   return (
     <label className="block text-sm">
       <span className="text-muted-foreground">{label}</span>
-      <input type={type} className="mt-1 w-full border border-input bg-background p-3" />
+      <input name={name} type={type} required className="mt-1 w-full border border-input bg-background p-3" />
     </label>
   );
 }
 
 function ReservationsPage() {
   const { t } = useLang();
-  const [done, setDone] = useState(false);
-  const submit = (e: FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setDone(true);
+    setStatus("sending");
+    const form = new FormData(e.currentTarget);
+    const ok = await sendToFormspree({
+      tip: "Резервација / Reservation",
+      ime: String(form.get("ime") ?? ""),
+      telefon: String(form.get("telefon") ?? ""),
+      datum: String(form.get("datum") ?? ""),
+      vreme: String(form.get("vreme") ?? ""),
+      gosti: String(form.get("gosti") ?? ""),
+      zabeleska: String(form.get("zabeleska") ?? ""),
+    });
+    setStatus(ok ? "sent" : "error");
   };
 
   return (
@@ -51,18 +64,21 @@ function ReservationsPage() {
 
         <form onSubmit={submit} className="card-warm mt-10 space-y-4 p-7">
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label={t("name")} type="text" />
-            <Field label={t("phone")} type="tel" />
-            <Field label={t("date")} type="date" />
-            <Field label={t("time")} type="time" />
-            <Field label={t("people")} type="number" />
+            <Field label={t("name")} type="text" name="ime" />
+            <Field label={t("phone")} type="tel" name="telefon" />
+            <Field label={t("date")} type="date" name="datum" />
+            <Field label={t("time")} type="time" name="vreme" />
+            <Field label={t("people")} type="number" name="gosti" />
           </div>
           <label className="block text-sm">
             <span className="text-muted-foreground">{t("note")}</span>
-            <textarea rows={3} className="mt-1 w-full border border-input bg-background p-3" />
+            <textarea name="zabeleska" rows={3} className="mt-1 w-full border border-input bg-background p-3" />
           </label>
-          <button className="btn-base btn-solid w-full">{t("send")}</button>
-          {done && <p className="text-sm text-primary">{t("sent")}</p>}
+          <button disabled={status === "sending"} className="btn-base btn-solid w-full disabled:opacity-60">
+            {status === "sending" ? "…" : t("send")}
+          </button>
+          {status === "sent" && <p className="text-sm text-primary">{t("sent")}</p>}
+          {status === "error" && <p className="text-sm text-closed">{t("sendError")}</p>}
         </form>
       </div>
     </main>
