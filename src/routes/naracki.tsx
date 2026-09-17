@@ -3,6 +3,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import { useLang } from "@/lib/i18n";
 import { MENU } from "@/lib/menu-data";
 import { menuText, menuPrice } from "@/lib/menu-i18n";
+import { sendToFormspree } from "@/lib/formspree";
 
 export const Route = createFileRoute("/naracki")({
   head: () => ({
@@ -21,11 +22,11 @@ export const Route = createFileRoute("/naracki")({
   component: OrdersPage,
 });
 
-function Field({ label, type }: { label: string; type: string }) {
+function Field({ label, type, name }: { label: string; type: string; name: string }) {
   return (
     <label className="block text-sm">
       <span className="text-muted-foreground">{label}</span>
-      <input type={type} className="mt-1 w-full border border-input bg-background p-3" />
+      <input name={name} type={type} required className="mt-1 w-full border border-input bg-background p-3" />
     </label>
   );
 }
@@ -34,7 +35,7 @@ type Line = { name: string; price: number; img: string; qty: number };
 
 function OrdersPage() {
   const { t, lang } = useLang();
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [catId, setCatId] = useState(MENU[0]!.id);
   const [lines, setLines] = useState<Line[]>([]);
 
@@ -59,9 +60,21 @@ function OrdersPage() {
     );
   };
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setDone(true);
+    if (lines.length === 0) return;
+    setStatus("sending");
+    const form = new FormData(e.currentTarget);
+    const ok = await sendToFormspree({
+      tip: "Нарачка / Order",
+      ime: String(form.get("ime") ?? ""),
+      telefon: String(form.get("telefon") ?? ""),
+      adresa: String(form.get("adresa") ?? ""),
+      jadenja: lines.map((l) => `${l.qty} × ${l.name}`).join("\n"),
+      vkupno: menuPrice(total, lang),
+      zabeleska: String(form.get("zabeleska") ?? ""),
+    });
+    setStatus(ok ? "sent" : "error");
   };
 
   return (
@@ -79,10 +92,10 @@ function OrdersPage() {
 
         <form onSubmit={submit} className="card-warm mt-10 space-y-6 p-7">
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label={t("name")} type="text" />
-            <Field label={t("phone")} type="tel" />
+            <Field label={t("name")} type="text" name="ime" />
+            <Field label={t("phone")} type="tel" name="telefon" />
           </div>
-          <Field label={t("address")} type="text" />
+          <Field label={t("address")} type="text" name="adresa" />
 
           <div>
             <p className="font-display text-xl uppercase tracking-wide">{t("pickDishes")}</p>
@@ -179,11 +192,17 @@ function OrdersPage() {
 
           <label className="block text-sm">
             <span className="text-muted-foreground">{t("orderNote")}</span>
-            <textarea rows={3} className="mt-1 w-full border border-input bg-background p-3" />
+            <textarea name="zabeleska" rows={3} className="mt-1 w-full border border-input bg-background p-3" />
           </label>
 
-          <button className="btn-base btn-solid w-full">{t("send")}</button>
-          {done && <p className="text-sm text-primary">{t("sent")}</p>}
+          <button
+            disabled={status === "sending" || lines.length === 0}
+            className="btn-base btn-solid w-full disabled:opacity-60"
+          >
+            {status === "sending" ? "…" : t("send")}
+          </button>
+          {status === "sent" && <p className="text-sm text-primary">{t("sent")}</p>}
+          {status === "error" && <p className="text-sm text-closed">{t("sendError")}</p>}
         </form>
       </div>
     </main>
