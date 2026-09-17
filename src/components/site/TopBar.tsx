@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
-import { EVENTS } from "@/lib/data";
 import { MENU } from "@/lib/menu-data";
 import { menuText } from "@/lib/menu-i18n";
 import dionLogo from "@/assets/dion-logo.png";
@@ -90,8 +89,6 @@ export function TopBar() {
     return () => window.clearInterval(interval);
   }, []);
 
-  const itemCls =
-    "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
   const linkCls = `font-display text-lg font-semibold uppercase transition-colors hover:text-primary ${
     solid ? "text-foreground" : "text-ink-foreground"
@@ -138,22 +135,9 @@ export function TopBar() {
                )}
             </Dropdown>
 
-            <Dropdown label={t("schedule")} solid={solid}>
-              {(close) =>
-                EVENTS.map((e) => (
-                  <Link
-                    key={e.id}
-                    to="/raspored/$id"
-                    params={{ id: e.id }}
-                    onClick={close}
-                    className={itemCls}
-                  >
-                    <span className="mr-2 font-display text-primary">{e.d}</span>
-                    {lang === "mk" ? e.mk : e.en}
-                  </Link>
-                ))
-              }
-            </Dropdown>
+            <Link to="/raspored" className={linkCls}>
+              {t("schedule")}
+            </Link>
           </nav>
         </div>
 
