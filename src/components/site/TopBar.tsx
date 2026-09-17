@@ -138,22 +138,9 @@ export function TopBar() {
                )}
             </Dropdown>
 
-            <Dropdown label={t("schedule")} solid={solid}>
-              {(close) =>
-                EVENTS.map((e) => (
-                  <Link
-                    key={e.id}
-                    to="/raspored/$id"
-                    params={{ id: e.id }}
-                    onClick={close}
-                    className={itemCls}
-                  >
-                    <span className="mr-2 font-display text-primary">{e.d}</span>
-                    {lang === "mk" ? e.mk : e.en}
-                  </Link>
-                ))
-              }
-            </Dropdown>
+            <Link to="/raspored" className={linkCls}>
+              {t("schedule")}
+            </Link>
           </nav>
         </div>
 
