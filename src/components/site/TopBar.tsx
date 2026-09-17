@@ -89,8 +89,6 @@ export function TopBar() {
     return () => window.clearInterval(interval);
   }, []);
 
-  const itemCls =
-    "block border-b border-border px-4 py-3 text-sm text-foreground transition-colors last:border-b-0 hover:bg-secondary hover:text-primary";
 
   const linkCls = `font-display text-lg font-semibold uppercase transition-colors hover:text-primary ${
     solid ? "text-foreground" : "text-ink-foreground"
